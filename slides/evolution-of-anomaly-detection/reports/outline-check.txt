@@ -80,12 +80,12 @@ Gate ① Programmatic Check Report: slides\evolution-of-anomaly-detection\outlin
   [PASS] Slide 16: all 8 slide-level wiki file & heading path(s) exist
 
 [4] Planned Diagram Files Existence Check
-  [PASS] Slide 05 diagram file exists: assets/diagrams/zavrtanik2021-riad-fig1.svg
-  [PASS] Slide 06 diagram file exists: assets/diagrams/roth2022-patchcore-fig2.svg
-  [PASS] Slide 07 diagram file exists: assets/diagrams/ho2020-ddpm-fig2.svg
-  [PASS] Slide 08 diagram file exists: assets/diagrams/zhang2023-diffusionad-fig3.svg
-  [PASS] Slide 09 diagram file exists: assets/diagrams/lee2026-lambda-fig1.svg
-  [PASS] Slide 12 diagram file exists: assets/diagrams/hecklerkram2025-mvtec-ad-2-fig4.svg
+  [PASS] Slide 05 diagram file exists: assets/diagrams/slides/riad-flow.html
+  [PASS] Slide 06 diagram file exists: assets/diagrams/slides/patchcore-flow.html
+  [PASS] Slide 07 diagram file exists: assets/diagrams/slides/ddpm-flow.html
+  [PASS] Slide 08 diagram file exists: assets/diagrams/slides/diffusionad-flow.html
+  [PASS] Slide 09 diagram file exists: assets/diagrams/slides/lambda-flow.html
+  [PASS] Slide 12 diagram file exists: assets/diagrams/slides/pro-example.html
 
 [5] Method Slides (5, 6, 8, 9) Standardized 4-Question Check
   [PASS] Slide 05 (RIAD) contains all 4 required questions: 輸入什麼, 保存或學到什麼, 怎麼產生異常分數, 主要限制

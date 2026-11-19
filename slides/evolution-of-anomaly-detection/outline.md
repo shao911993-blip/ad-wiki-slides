@@ -185,10 +185,10 @@
 - `wiki/datasets/mvtec-ad.md` `### 5.2 後續收錄方法於 MVTec AD 的演進表現匯總`
 
 ### 預計使用的圖檔
-- `assets/diagrams/zavrtanik2021-riad-fig1.svg`（簡報相對路徑：`../../assets/diagrams/zavrtanik2021-riad-fig1.svg`）
+- `assets/diagrams/slides/riad-flow.html`
 
 ### 投影片可見內容
-- **上方架構圖**：`../../assets/diagrams/zavrtanik2021-riad-fig1.svg`（標註：示意圖，依論文 Fig. 1 重繪）
+- **上方教學流程圖**：`../../assets/diagrams/slides/riad-flow.html`（依論文 Fig. 1 重繪，遮罩拼貼細節對應 Fig. 3）
 - **下方四問卡片（統一四問結構，共 108 字，含 3 個關鍵數字：3、12、94.2%）**：
   1. **輸入什麼？** 將影像切成多尺度網格，隨機分成 **3** 組互斥遮罩輪流挖空後的殘缺影像。
   2. **保存或學到什麼？** 訓練 U-Net 僅靠周圍未遮蔽的正常鄰域修補挖空處，防止直接照抄瑕疵。
@@ -226,10 +226,10 @@
 - `wiki/concepts/memory-bank.md` `## 3. 核心原理與數學公式（出自 roth2022-patchcore.pdf Sec. 3, p. 3–5）`
 
 ### 預計使用的圖檔
-- `assets/diagrams/roth2022-patchcore-fig2.svg`（簡報相對路徑：`../../assets/diagrams/roth2022-patchcore-fig2.svg`）
+- `assets/diagrams/slides/patchcore-flow.html`
 
 ### 投影片可見內容
-- **上方架構圖**：`../../assets/diagrams/roth2022-patchcore-fig2.svg`（標註：示意圖，依論文 Fig. 2 重繪）
+- **上方教學流程圖**：`../../assets/diagrams/slides/patchcore-flow.html`（依論文 Fig. 2 重繪）
 - **下方四問卡片（統一四問結構，共 115 字，含 3 個關鍵數字：1%、99.0%、0.17 s）**：
   1. **輸入什麼？** 無資料擴增之單張影像（縮放並中心裁切），送入固定的 ImageNet 預訓練骨幹網路。
   2. **保存或學到什麼？** 不需訓練網路權重；擷取中階局部鄰域聚合特徵建立記憶庫 \(\mathcal{M}\)，再以貪婪核心集（Greedy Coreset）壓縮至 **1%** 代表性特徵 \(\mathcal{M}_C\)。
@@ -268,10 +268,10 @@
 - `wiki/concepts/denoising-diffusion-probabilistic-models.md` `## 3. 核心數學原理與公式（出自 ho2020-ddpm.pdf Sec. 2 & Sec. 3, p. 2–5）`
 
 ### 預計使用的圖檔
-- `assets/diagrams/ho2020-ddpm-fig2.svg`（簡報相對路徑：`../../assets/diagrams/ho2020-ddpm-fig2.svg`）
+- `assets/diagrams/slides/ddpm-flow.html`
 
 ### 投影片可見內容
-- **上方架構圖**：`../../assets/diagrams/ho2020-ddpm-fig2.svg`（標註：示意圖，依論文 Fig. 2 重繪）
+- **前向與逆向流程圖**：`../../assets/diagrams/slides/ddpm-flow.html`（依論文 Fig. 2 重繪）
 - **可見正文（106 字，不放 CIFAR10 的 FID／IS，集中在加噪、預測雜訊、重建）**：
   - **前向加噪**：利用閉式解直接跳到第 \(t\) 步混入高斯雜訊，把局部瑕疵淹沒。
   - **逆向預測雜訊**：訓練 U-Net 網路 \(\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)\) 預測混入的雜訊 \(\boldsymbol{\epsilon}\)。
@@ -311,10 +311,10 @@
 - `wiki/concepts/norm-guided-one-step-denoising.md` `## 3. 核心原理與數學公式`
 
 ### 預計使用的圖檔
-- `assets/diagrams/zhang2023-diffusionad-fig3.svg`（簡報相對路徑：`../../assets/diagrams/zhang2023-diffusionad-fig3.svg`）
+- `assets/diagrams/slides/diffusionad-flow.html`
 
 ### 投影片可見內容
-- **上方架構圖**：`../../assets/diagrams/zhang2023-diffusionad-fig3.svg`（標註：示意圖，依論文 Fig. 3 重繪）
+- **上方教學流程圖**：`../../assets/diagrams/slides/diffusionad-flow.html`（依論文 Fig. 3 重繪）
 - **下方四問卡片（統一四問結構，共 114 字，含 3 個關鍵數字：200、400、99.7%）**：
   1. **輸入什麼？** 對輸入影像同時施加小尺度（\(t_s=\) **200**）與大尺度（\(t_b=\) **400**）雙尺度高斯雜訊（訓練時搭配合成異常）。
   2. **保存或學到什麼？** 聯合訓練「擴散去噪網路」（將異常視為雜訊濾除）與「分割 U-Net」（比對原圖與重建圖差異）。
@@ -351,10 +351,10 @@
 - `wiki/concepts/memory-bank-guided-latent-diffusion.md` `## 3. 核心原理與數學公式（出自 lee2026-lambda.pdf Sec. 3 & Sec. 4, p. 3–6）`
 
 ### 預計使用的圖檔
-- `assets/diagrams/lee2026-lambda-fig1.svg`（簡報相對路徑：`../../assets/diagrams/lee2026-lambda-fig1.svg`）
+- `assets/diagrams/slides/lambda-flow.html`
 
 ### 投影片可見內容
-- **上方架構圖**：`../../assets/diagrams/lee2026-lambda-fig1.svg`（標註：示意圖，依論文 Fig. 1 重繪）
+- **上方教學流程圖**：`../../assets/diagrams/slides/lambda-flow.html`（依論文 Fig. 1–3 重繪）
 - **下方四問卡片（統一四問結構，共 116 字，不放 BMAD 成績與 p-value，聚焦 VAE、記憶庫、引導各自的角色；含 3 個關鍵數字：64、200、94.2%）**：
   1. **輸入什麼？** 影像經預訓練 `VAE` 壓縮至面積縮小 **64** 倍的潛在空間，並於單一時間步加入高斯雜訊。
   2. **保存或學到什麼？** 記憶庫保存 **200** 張正常潛在表徵與距離統計；同時訓練潛在去噪網路與像素分割網路。
@@ -483,10 +483,10 @@
 - `wiki/datasets/mvtec-ad-2.md` `## 4. 評估指標定義：$\text{AU-PRO}_{0.05}$ vs. $\text{AU-PRO}_{0.30}$ 與二值化 $F_1$（出自 hecklerkram2025-mvtec-ad-2.pdf Sec. 4.2, p. 8–9 & Supplemental Material B, p. 14）`
 
 ### 預計使用的圖檔
-- `assets/diagrams/hecklerkram2025-mvtec-ad-2-fig4.svg`（簡報相對路徑：`../../assets/diagrams/hecklerkram2025-mvtec-ad-2-fig4.svg`）
+- `assets/diagrams/slides/pro-example.html`
 
 ### 投影片可見內容
-- **上方示意圖**：`../../assets/diagrams/hecklerkram2025-mvtec-ad-2-fig4.svg`（標註：示意圖，依論文 Fig. 4 重繪——此為論文概念示例數字，非模型實驗結果）
+- **上方示意圖**：`../../assets/diagrams/slides/pro-example.html`（依論文 Fig. 4 重繪，顯示只抓到大瑕疵的情境）
 - **可見正文（95 字，含 3 個關鍵數字：3、0.77、0.33）**：
   - **像素級 `TPR` 的盲點**：把整張圖所有瑕疵像素混在一起算，面積大的瑕疵會完全主導分數。
   - **`PRO` 的公平性**：讓圖中 **3** 個不同大小的獨立瑕疵區域享有相等權重。當模型只抓到大瑕疵卻漏掉兩個小瑕疵（情境 `iv`），`TPR` 高達 **0.77**，`PRO` 則誠實給出 **0.33**。

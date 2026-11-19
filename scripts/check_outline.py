@@ -573,7 +573,7 @@ def run_check(outline_path=DEFAULT_OUTLINE_PATH, report_path=DEFAULT_REPORT_PATH
 
     # 4. Check planned diagram files exist on disk
     log("\n[4] Planned Diagram Files Existence Check")
-    diag_pattern = re.compile(r"`(assets/diagrams/[a-z0-9\-]+\.svg)`")
+    diag_pattern = re.compile(r"`(assets/diagrams/(?:slides/)?[a-z0-9\-]+\.(?:svg|html))`")
     diag_refs = []
     for p in range(1, 17):
         if p not in slides:

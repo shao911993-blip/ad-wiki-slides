@@ -4,7 +4,7 @@
 - 桌面（16:9 畫布等比例縮放）：內文沒有壓到標題或頁尾、沒有元素超出畫布、圖沒有被壓到最小高度、
   縮放後最小字級（報告數值）。
 - 手機（寬 ≤ 760，直向捲動）：沒有元素超出畫面寬度（含被 overflow 靜默裁切的情況）。
-- 全部視窗：圖片載入、表格內英文字不被拆行、KaTeX 無錯誤且沒有殘留的 $、換頁按鈕與鍵盤、講者備註預設隱藏。
+- 全部視窗：圖片載入、圖解可見且標籤至少 14 px、表格英文不拆行、KaTeX、換頁與講者備註。
 - 內容一致：草稿的學習目標、投影片內容、延伸閱讀每一行（含表格每格），在畫面文字中都找得到。
   比對前先拿掉 class="lbl" 的版面標籤，並忽略空白與「，。；：、」（版型會把句子拆到不同格子）。
   公式 $…$ 不比對文字，改比對投影片內文的 KaTeX 數量。檢查前會先按下所有「顯示解答」。
@@ -102,6 +102,17 @@ MEASURE = r"""() => {
     return {ok: i.complete && i.naturalWidth > 0, visible: vis(i) && rect.width > 0 && rect.height > 0,
       h: Math.round(rect.height / (narrow ? 1 : scale)), fig: !!i.closest('.fig')};
   });
+  const diagrams = [...s.querySelectorAll('.teaching-diagram')].map(diagram => {
+    const labels = [...diagram.querySelectorAll('strong, small, .noise-tile, .defect-legend span')];
+    const visible = el => {
+      const {width, height} = el.getBoundingClientRect();
+      const {visibility, opacity} = getComputedStyle(el);
+      return vis(el) && width > 0 && height > 0 && visibility === 'visible' && Number(opacity) > 0;
+    };
+    const font = el => parseFloat(getComputedStyle(el).fontSize) * (narrow ? 1 : scale);
+    return {visible: visible(diagram) && labels.length > 0 && labels.every(visible),
+      minFont: Math.floor(Math.min(...labels.map(font)) * 10) / 10};
+  });
   const broken = [];
   s.querySelectorAll('table td, table th').forEach(cell => {
     const w = document.createTreeWalker(cell, NodeFilter.SHOW_TEXT); let t;
@@ -110,11 +121,11 @@ MEASURE = r"""() => {
         if (new Set([...rg.getClientRects()].map(c => Math.round(c.top))).size > 1) broken.push(m[0]); } }
   });
   const clone = s.cloneNode(true);
-  clone.querySelectorAll('.speaker-notes, .lbl, .katex').forEach(n => n.remove());
+  clone.querySelectorAll('.speaker-notes, .lbl, .katex, .teaching-diagram').forEach(n => n.remove());
   document.body.appendChild(clone); clone.style.cssText = 'position:absolute;left:-99999px;display:flex;transform:none';
   const text = clone.innerText; clone.remove();
   return { n: +s.dataset.n, scale, slack, overlap, outside: [...new Set(outside)].slice(0, 5), minFont: Math.round(minFont * 10) / 10, minFontEl,
-    imgs, brokenWords: broken, katex: s.querySelectorAll('.content .katex, .cover-left .katex').length,
+    imgs, diagrams, brokenWords: broken, katex: s.querySelectorAll('.content .katex, .cover-left .katex').length,
     katexInBody: [...s.querySelectorAll('.content .katex')].length,
     katexErr: s.querySelectorAll('.katex-error').length, rawDollar: /\$/.test(text), text,
     docW: document.documentElement.scrollWidth, winW: window.innerWidth };
@@ -147,7 +158,7 @@ with sync_playwright() as p:
             if args.screenshots and name == "desktop-1366x768":
                 page.evaluate("document.querySelectorAll('[data-reveal]').forEach(e => e.classList.remove('open'))")
                 page.screenshot(path=str(SHOTS / f"{name}-{n:02d}.png"))
-            if args.screenshots and name == "mobile-390x844" and n in (5, 8, 12):
+            if args.screenshots and name == "mobile-390x844" and n in (3, 5, 8, 12):
                 page.screenshot(path=str(SHOTS / f"{name}-{n:02d}.png"), full_page=True)
         nav = {}
         page.goto(BASE + "#1"); page.wait_for_timeout(200)
@@ -181,7 +192,7 @@ P = lines.append
 P("關卡 ④ 瀏覽器渲染檢查報告（scripts/check_render.py 產生）")
 P(f"受檢檔案：{DECK}；KaTeX 來源：{'本機 0.16.11' if KATEX else 'CDN'}")
 P("桌面：1280×720 畫布等比例縮放，檢查內文不壓到標題／頁尾、元素不超出畫布、圖不被壓到最小高度（150 px）；「餘裕」為內文底端到頁尾的距離（畫布座標）。")
-P("手機：寬 ≤ 760 改為直向捲動，檢查元素不超出畫面寬度。全部視窗：圖片、表格拆字、KaTeX、換頁與備註。")
+P("手機：寬 ≤ 760 改為直向捲動，檢查元素不超出畫面寬度。全部視窗：教學圖標籤至少 14 px，並檢查圖片、表格拆字、KaTeX、換頁與備註。")
 errors = 0
 EXPECT = {"ArrowRight_from_1": "2 / 16", "ArrowLeft_back": "1 / 16", "ArrowLeft_at_1_stays": "1 / 16", "End": "16 / 16",
           "ArrowRight_at_16_stays": "16 / 16", "Home": "1 / 16", "next_btn_x2": "3 / 16", "prev_btn": "2 / 16",
@@ -206,14 +217,18 @@ for name, r in results.items():
             flag.append("公式錯誤")
         if not all(i["ok"] for i in m["imgs"]):
             flag.append("圖片未載入")
-        if any(i["fig"] and not i["visible"] for i in m["imgs"]):
+        if any(i["fig"] and not i["visible"] for i in m["imgs"]) or any(not d["visible"] for d in m["diagrams"]):
             flag.append("教學圖未顯示")
+        if any(d["minFont"] < 14 for d in m["diagrams"]):
+            flag.append("教學圖標籤低於 14 px")
         if desk and any(i["fig"] and i["h"] <= 151 for i in m["imgs"]):
             flag.append("圖被壓到最小高度")
         errors += bool(flag)
         figs = [i["h"] for i in m["imgs"] if i["fig"]]
         info = (f"餘裕 {m['slack']} px，" if desk and m["slack"] is not None else "") + \
-               (f"圖高 {figs[0]} px，" if figs else "") + f"最小字 {m['minFont']} px"
+               (f"圖高 {figs[0]} px，" if figs else "") + \
+               (f"圖解標籤 {min(d['minFont'] for d in m['diagrams']):g} px，" if m["diagrams"] else "") + \
+               f"最小字 {m['minFont']} px"
         P(f"  第 {m['n']:2d} 頁：{info} → {'；'.join(flag) or 'PASS'}")
     bad = {k: r["nav"].get(k) for k, v in EXPECT.items() if r["nav"].get(k) != v}
     errors += len(bad)

@@ -137,8 +137,18 @@ def L(text):
 
 
 def figure_html(b, cls="fig"):
-    return (f'<figure class="{cls}"><img src="{html.escape(b["src"])}" alt="{html.escape(b["alt"])}" />'
-            f'<figcaption>{inline(b["cap"])}</figcaption></figure>')
+    src, alt = b["src"], html.escape(b["alt"])
+    if src.endswith(".html"):
+        diagrams = Path(__file__).resolve().parents[1] / "assets" / "diagrams" / "slides"
+        path = diagrams / Path(src).name
+        if src != f"../../assets/diagrams/slides/{path.name}":
+            sys.exit(f"教學圖解路徑無效：{src}")
+        diagram = path.read_text(encoding="utf-8").strip()
+        cls += " diagram"
+        visual = f'<div class="teaching-diagram" role="img" aria-label="{alt}">{diagram}</div>'
+    else:
+        visual = f'<img src="{html.escape(src)}" alt="{alt}" />'
+    return f'<figure class="{cls}">{visual}<figcaption>{inline(b["cap"])}</figcaption></figure>'
 
 
 def card(label_md, body_md, cls="card", sub=None, num=None):
@@ -210,13 +220,13 @@ def lay_bignums(pg, cfg, spec):
     if plain(pieces) != plain(src):
         sys.exit(f"[p{pg['n']}] 大數字拆段拼回後與草稿不同：\n  草稿：{plain(src)}\n  拼回：{plain(pieces)}")
     tiles = "".join(
-        f'<div class="bignum"><div class="pre">{html.escape(t["pre"]) or "&nbsp;"}</div>'
+        f'<div class="bignum"><div class="pre">{inline(t["pre"] or spec["label"])}</div>'
         f'<div class="n">{html.escape(t["n"])}</div><div class="unit">{html.escape(t["unit"])}</div></div>'
         for t in spec["tiles"])
     rest = [it for i, it in enumerate(items) if i != spec["bullet"]]
     defs = "".join(card(*split_label(it["text"]), cls="card def") for it in rest)
-    return (f'<div class="stack"><div class="dsname"><span class="term">{html.escape(spec["label"])}</span></div>'
-            f'<div class="bignums">{tiles}</div><div class="row-cards cols{len(rest)}">{defs}</div></div>')
+    return (f'<div class="stack"><div class="bignums">{tiles}</div>'
+            f'<div class="row-cards cols{len(rest)}">{defs}</div></div>')
 
 
 def lay_versus(pg, cfg, spec):

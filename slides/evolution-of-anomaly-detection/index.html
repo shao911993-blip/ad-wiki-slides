@@ -51,9 +51,9 @@
   .progress i.on { background: currentColor; }
   .has-mascot .progress { margin-right: 92px; }
   h2.title { font-size: 40px; line-height: 1.22; margin: 16px 0 6px; letter-spacing: .3px; }
-  .goal { font-size: 16.5px; color: var(--muted); line-height: 1.5; margin-bottom: 16px; max-width: 1080px; }
+  .goal { font-size: 16.5px; color: var(--muted); line-height: 1.5; margin-bottom: 24px; max-width: 1080px; text-wrap: pretty; }
   .goal > .lbl:first-child { font-weight: 700; color: var(--ink); margin-right: 12px; }
-  .content { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+  .content { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
   .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; font-size: 13.5px; color: var(--muted);
     border-top: 1px solid var(--line); padding-top: 10px; margin-top: 14px; }
   .foot .reading > .lbl { margin-right: 6px; }
@@ -68,7 +68,8 @@
   .row-cards { display: grid; gap: 16px; }
   .cols1 { grid-template-columns: 1fr; } .cols2 { grid-template-columns: 1fr 1fr; }
   .cols3 { grid-template-columns: 1fr 1fr 1fr; } .cols4 { grid-template-columns: repeat(4, 1fr); }
-  .card { background: var(--card); border-radius: var(--radius); padding: 18px 24px; font-size: 20px; line-height: 1.6; position: relative; }
+  .card { background: var(--card); border-radius: var(--radius); padding: 18px 24px; font-size: 20px; line-height: 1.55; position: relative; }
+  .card p { text-wrap: pretty; }
   .card h3 { margin: 0 0 4px; font-size: 22px; color: var(--c, var(--accent)); line-height: 1.35; }
   .card .sub { padding-left: 1.2em; margin-top: 6px; }
   .card .sub li { margin: 2px 0; }
@@ -80,13 +81,12 @@
   .card strong { color: var(--ink); }
 
   /* 大數字 */
-  .dsname { font-size: 22px; }
-  .bignums { display: grid; grid-template-columns: .8fr 1.1fr 1.1fr; gap: 18px; }
-  .bignum { background: var(--c-soft); border-radius: var(--radius); padding: 18px 24px; }
+  .bignums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .bignum { background: var(--c-soft); border-radius: var(--radius); padding: 22px 24px; }
   .bignum .pre { font-size: 18px; color: var(--muted); font-weight: 700; }
-  .bignum .n { font-size: 70px; font-weight: 800; line-height: 1.05; color: var(--c); font-variant-numeric: tabular-nums; }
+  .bignum .n { font-size: 62px; font-weight: 800; line-height: 1.15; color: var(--c); font-variant-numeric: tabular-nums; }
   .bignum .unit { font-size: 19px; }
-  .card.def { background: transparent; border: 2px solid var(--line); }
+  .card.def { background: #fff; border: 1px solid var(--line); padding-block: 23px; }
   .card.def h3 { font-size: 26px; }
 
   /* 左右對照 */
@@ -108,12 +108,49 @@
   .fig img { display: block; margin: 0 auto; max-width: 100%; min-height: 0; object-fit: contain; }
   .fig.grow { flex: 1 1 0; }
   .fig.grow img { flex: 1 1 0; height: 0; width: 100%; min-height: 150px; }
-  .fig figcaption { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .fig figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .fig.diagram { flex: none; padding: 16px 20px 12px; }
+  .teaching-diagram { width: 100%; color: var(--ink); font-size: 21px; line-height: 1.35; }
+  .teaching-diagram strong { text-wrap: balance; }
+  .visual-flow { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
+    gap: 32px; padding: 0; margin: 0; list-style: none; }
+  .visual-flow li { position: relative; border-radius: 10px; min-width: 0; padding: 14px 10px;
+    background: var(--card); display: grid; align-content: center; justify-items: center; gap: 5px; margin: 0;
+    word-break: normal; overflow-wrap: normal; }
+  .visual-flow li:not(:last-child)::after { content: "→"; font-weight: 800; color: var(--c);
+    position: absolute; left: 100%; top: 50%; width: 32px; transform: translateY(-50%); text-align: center; }
+  .visual-flow .diagram-highlight { background: var(--c-soft); color: var(--c); }
+  .visual-flow small { font-size: 18px; color: var(--muted); }
+  .visual-flow svg { width: 72px; height: 56px; }
+  .diagram-frame { fill: #fff; stroke: var(--c); stroke-width: 1.6; }
+  .diagram-fill { fill: var(--c); }
+  .diagram-fill.soft { fill: var(--c-soft); }
+  .diagram-line { fill: none; stroke: var(--c); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .diagram-branches { display: grid; gap: 20px; }
+  .diagram-branches .visual-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .diagram-phrase { white-space: nowrap; }
+  .feed-row li:last-child::after { content: "↓"; color: var(--c); position: absolute;
+    top: 100%; left: 0; width: 100%; height: 20px; line-height: 20px; }
+  .ddpm-paths { text-align: left; gap: 16px; }
+  .diffusion-path { margin-top: 6px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 9px; align-items: center; color: var(--c); font-weight: 800; text-align: center; }
+  .noise-tile { display: block; border: 1px solid var(--line); border-radius: 8px; padding: 10px 0; background-color: var(--card); }
+  .noise-tile.mixed, .noise-tile.noisy { background-image: radial-gradient(var(--line) 1px, transparent 1px); background-size: 10px 10px; }
+  .noise-tile.noisy { background-color: var(--c-soft); background-size: 5px 5px; }
+  .region-example { display: grid; grid-template-columns: minmax(0, 380px) max-content; justify-content: center;
+    gap: 34px; align-items: center; text-align: left; }
+  .region-example svg { display: block; width: 100%; }
+  .defect-legend { display: grid; gap: 9px; }
+  .defect-legend span { display: flex; align-items: center; gap: 9px; }
+  .defect-legend i { width: 16px; height: 16px; border-radius: 3px; }
+  .defect-detected { fill: var(--c-soft); stroke: var(--c); stroke-width: 2; background: var(--c-soft); border: 2px solid var(--c); }
+  .defect-missed { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 4; border: 2px dashed var(--muted); }
   .qgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .card.q { padding: 12px 20px 12px 64px; font-size: 18.5px; line-height: 1.5; }
+  .card.q { padding: 12px 18px 12px 52px; font-size: 19px; line-height: 1.48; }
   .card.q h3 { font-size: 18px; margin-bottom: 2px; }
   .num { position: absolute; left: 18px; top: 14px; width: 32px; height: 32px; border-radius: 50%; background: var(--c);
     color: #fff; font-weight: 800; font-size: 16px; display: grid; place-items: center; }
+  .card.q .num { left: 15px; width: 25px; height: 25px; font-size: 14px; background: var(--c-soft); color: var(--c); }
 
   /* 圖在左、步驟在右 */
   .side-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 22px; align-items: start; }
@@ -188,6 +225,20 @@
   .stop .st1 { background: var(--st1); } .stop .st2 { background: var(--st2); } .stop .st3 { background: var(--st3); }
   .cover .foot { margin-top: auto; }
 
+  @media (min-width: 761px) {
+    :is(.lay-cards, .lay-bignums, .lay-versus, .lay-stat-list, .lay-definition, .lay-timeline, .lay-refs) .content { padding-top: 16px; }
+    .lay-cards .card { padding: 30px 28px; }
+    .bignum { padding-block: 27px; }
+    .card.def { padding-block: 27px; }
+    .side { padding-block: 29px; }
+    .vrow { padding-block: 16px; }
+    .stat-layout > .card { min-height: 270px; }
+    .stat-layout .wide { display: flex; flex-direction: column; justify-content: center; }
+    .lay-definition .card { padding-block: 25px; }
+    .qa { min-height: 166px; }
+    .card.ref { min-height: 112px; padding-block: 22px; }
+  }
+
   /* ===== 講者備註 ===== */
   .speaker-notes { display: none; }
   body.show-notes .speaker-notes.current { display: block; position: fixed; left: 50%; transform: translateX(-50%);
@@ -210,28 +261,55 @@
     html, body { overflow: auto; height: auto; }
     .stage { position: static; padding: 8px 8px calc(var(--nav-h) + 8px); }
     .slide { position: static; width: auto; height: auto; transform: none !important; padding: 20px 16px 16px; border-radius: 10px; }
-    .slide.cover { flex-direction: column-reverse; }
-    .cover-left { padding: 20px 16px; } .cover-right { padding: 18px; } .cover-right img { width: 150px; }
+    .slide.cover { flex-direction: column; }
+    .cover-left { padding: 20px 16px; } .cover-right { display: none; }
     .cover h1.title { font-size: 30px; } h2.title { font-size: 26px; }
     .row-cards, .bignums, .versus, .qgrid, .side-layout, .side-layout.tbl, .stat-layout, .qa, .refs { grid-template-columns: 1fr !important; }
     .card, .lay-cards .card, .vrow, .chip { font-size: 17px; }
     .card.q, .card.step { font-size: 16.5px; }
-    .bignum .n { font-size: 46px; }
+    .bignums { gap: 8px; }
+    .bignum { display: grid; grid-template-columns: minmax(97px, max-content) 1fr; align-items: center;
+      column-gap: 12px; padding: 10px 14px; }
+    .bignum .pre { grid-column: 2; align-self: end; font-size: 15px; }
+    .bignum .n { grid-area: 1 / 1 / 3 / 2; font-size: 34px; }
+    .bignum .unit { align-self: start; font-size: 16px; line-height: 1.4; }
     .fig.grow, .fig.grow img { flex: none; }
     .fig.grow img { min-height: 0; height: auto; }
+    .fig.diagram { padding: 12px; }
+    .teaching-diagram { font-size: 17px; }
+    .visual-flow { grid-auto-flow: row; gap: 19px; }
+    .visual-flow li { padding: 9px; }
+    .visual-flow li:has(svg) { grid-template-columns: 44px 1fr; align-items: center; justify-items: start; text-align: left; }
+    .visual-flow svg { width: 44px; height: 36px; }
+    .visual-flow li:not(:last-child)::after { left: 50%; top: 100%; width: 19px; height: 19px;
+      line-height: 19px; transform: translateX(-50%) rotate(90deg); }
+    .diagram-branches .visual-flow { grid-auto-flow: column; gap: 14px; }
+    .diagram-branches .visual-flow li { padding: 7px 4px; }
+    .diagram-branches .visual-flow li:not(:last-child)::after { left: 100%; top: 50%; width: 14px; font-size: 13px; transform: translateY(-50%); }
+    .diagram-branches .visual-flow { font-size: 16px; }
+    .visual-flow small { font-size: 14px; }
+    .region-example { grid-template-columns: 1fr; gap: 10px; }
+    .defect-legend { display: flex; flex-wrap: wrap; column-gap: 16px; }
+    .defect-legend strong { flex-basis: 100%; }
     .mascot-peek { width: 56px; top: 12px; right: 12px; }
     .has-mascot .progress { margin-right: 60px; }
     .qa-mascot { display: none; }
+    .chain { display: grid; gap: 3px; text-align: center; }
+    .lay-timeline .chip { padding: 6px 12px; font-size: 16px; }
+    .chain .arrow { justify-self: center; transform: rotate(90deg); font-size: 18px; line-height: 18px; }
+    .lay-refs .refs { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 8px; }
+    .lay-refs .card.ref { padding: 12px; font-size: 16px; }
+    .lay-refs .card.ref h3 { font-size: 17px; }
     .data-table { font-size: 13px; }
     .data-table th, .data-table td { padding: 6px 5px; }
     .data-table thead th { font-size: 12px; }
     .term { white-space: normal; }
     .foot { flex-direction: column; align-items: flex-start; gap: 4px; }
-    .nav .home { display: none; }
-    .vs { padding: 4px 0; }
-    .side-layout { display: flex; flex-direction: column; gap: 14px; }
-    .side-left, .side-right { display: contents; }
-    .side-layout .fig { order: 1; } .side-layout .card { order: 2; } .side-layout .callout { order: 3; }
+    .nav { background: var(--canvas); }
+    .nav .home, .vs { display: none; }
+    .lay-figure-side .side-layout { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
+    .lay-figure-side :is(.side-left, .side-right) { display: contents; }
+    .lay-figure-side .card { order: 1; } .lay-figure-side .callout { order: 2; }
   }
 </style>
 </head>
@@ -262,7 +340,7 @@
   <div class="topbar"><span class="station"><span class="lbl">第 1 站</span><span class="lbl">任務與基準</span></span><span class="progress lbl" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></span></div>
   <h2 class="title">MVTec AD 與基本評估</h2>
   <p class="goal"><span class="lbl">這頁要學會</span>認識工業異常檢測標準基準 MVTec AD 的資料分工，並理解影像級與像素級（<span class="term">AUROC</span> 與 <span class="term">PRO</span>）基本評估方式。</p>
-  <div class="content"><div class="stack"><div class="dsname"><span class="term">MVTec AD</span></div><div class="bignums"><div class="bignum"><div class="pre">&nbsp;</div><div class="n">15</div><div class="unit">類工業產品</div></div><div class="bignum"><div class="pre">訓練只有</div><div class="n">3,629</div><div class="unit">張正常品（可再分出驗證集）</div></div><div class="bignum"><div class="pre">測試</div><div class="n">1,725</div><div class="unit">張混有正常與瑕疵品</div></div></div><div class="row-cards cols2"><div class="card def"><h3><span class="term">AUROC</span></h3><p>看模型能不能把瑕疵排在正常品前面；可用在整張圖，也可用在每個像素。</p></div><div class="card def"><h3><span class="term">PRO</span></h3><p>每個瑕疵區域被標中的比例，再取平均；看定位準不準。</p></div></div></div></div>
+  <div class="content"><div class="stack"><div class="bignums"><div class="bignum"><div class="pre">MVTec AD</div><div class="n">15</div><div class="unit">類工業產品</div></div><div class="bignum"><div class="pre">訓練只有</div><div class="n">3,629</div><div class="unit">張正常品（可再分出驗證集）</div></div><div class="bignum"><div class="pre">測試</div><div class="n">1,725</div><div class="unit">張混有正常與瑕疵品</div></div></div><div class="row-cards cols2"><div class="card def"><h3><span class="term">AUROC</span></h3><p>看模型能不能把瑕疵排在正常品前面；可用在整張圖，也可用在每個像素。</p></div><div class="card def"><h3><span class="term">PRO</span></h3><p>每個瑕疵區域被標中的比例，再取平均；看定位準不準。</p></div></div></div></div>
 
   <footer class="foot"><span class="reading"><span class="lbl">延伸閱讀</span><a href="../../wiki-html/papers/bergmann2019-mvtec-ad.html#4-資料集規格與評估指標">Bergmann et al. (2019) — MVTec AD §4</a> <a href="../../wiki-html/datasets/mvtec-ad.html#3-資料集規格總覽出自-bergmann2019-mvtec-adpdf-table-1-p-4--sec-3-p-45">MVTec AD 資料集與評估指標 §3–§4</a></span><span class="lbl pageno">3 / 16</span></footer>
   <aside class="speaker-notes" aria-label="講者備註"><h3 class="lbl">講者備註</h3><ul><li>MVTec AD 包含 5 類材質紋理與 10 類物件，總計 5,354 張影像（測試集含 467 張正常與 1,258 張異常，共 73 種缺陷、1,888 個標註區域）。</li></ul></aside>
@@ -282,7 +360,41 @@
   <div class="topbar"><span class="station"><span class="lbl">第 2 站</span><span class="lbl">方法演進</span></span><span class="progress lbl" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span></div>
   <h2 class="title">RIAD</h2>
   <p class="goal"><span class="lbl">這頁要學會</span>理解 RIAD 如何透過「隨機網格挖空修補（Reconstruction by Inpainting）」阻斷異常像素照抄，並利用多尺度梯度幅值相似度（MSGMS）定位異常。</p>
-  <div class="content"><div class="method"><figure class="fig grow"><img src="../../assets/diagrams/zavrtanik2021-riad-fig1.svg" alt="RIAD 架構示意圖" /><figcaption><em>示意圖，依論文 Fig. 1 重繪（遮罩拼貼細節對應 Fig. 3）</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>把圖切成網格，分 <strong>3</strong> 組輪流遮住一部分。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>學會只看周圍的正常區域，把遮住的地方補回來。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>比較原圖和補回的圖，差越多越可疑（<span class="term">MVTec AD</span> 像素 <span class="term">AUROC</span> <strong>94.2%</strong>）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>一張圖要補 <strong>12</strong> 次；紋理很隨機或只有顏色異常時較弱。</p></div></div></div></div>
+  <div class="content"><div class="method"><figure class="fig grow diagram"><div class="teaching-diagram" role="img" aria-label="RIAD 由網格遮蔽、鄰域修補、拼回影像到比對原圖的流程"><ol class="visual-flow">
+  <li>
+    <svg viewBox="0 0 72 56" aria-hidden="true">
+      <rect class="diagram-frame" x="10" y="5" width="52" height="46" rx="5"/>
+      <path class="diagram-line" d="M27 5v46M45 5v46M10 20h52M10 36h52"/>
+      <path class="diagram-fill" d="M28 6h16v13H28zM11 21h15v14H11zM46 37h15v13H46z"/>
+    </svg>
+    <strong>網格輪流遮住</strong>
+  </li>
+  <li>
+    <svg viewBox="0 0 72 56" aria-hidden="true">
+      <rect class="diagram-frame" x="10" y="5" width="52" height="46" rx="5"/>
+      <rect class="diagram-fill" x="27" y="20" width="18" height="16" rx="3"/>
+      <path class="diagram-line" d="M15 28h7m-3-3 3 3-3 3M57 28h-7m3-3-3 3 3 3M36 9v6m-3-3 3 3 3-3M36 47v-6m-3 3 3-3 3 3"/>
+    </svg>
+    <strong>看周圍來修補</strong>
+  </li>
+  <li>
+    <svg viewBox="0 0 72 56" aria-hidden="true">
+      <rect class="diagram-frame" x="10" y="5" width="52" height="46" rx="5"/>
+      <path class="diagram-fill soft" d="M27 5h18v15H27zM10 20h17v16H10zM45 36h17v15H45z"/>
+      <path class="diagram-line" d="M27 5v46M45 5v46M10 20h52M10 36h52"/>
+    </svg>
+    <strong>拼回重建圖</strong>
+  </li>
+  <li>
+    <svg viewBox="0 0 72 56" aria-hidden="true">
+      <rect class="diagram-frame" x="3" y="12" width="27" height="32" rx="4"/>
+      <rect class="diagram-frame" x="42" y="12" width="27" height="32" rx="4"/>
+      <path class="diagram-line" d="M16 20l-4 6 7 4-3 7m18-9h4"/>
+      <circle class="diagram-fill" cx="55.5" cy="28" r="7"/>
+    </svg>
+    <strong>比對原圖找異常</strong>
+  </li>
+</ol></div><figcaption><em>示意圖，依論文 Fig. 1 重繪（遮罩拼貼細節對應 Fig. 3）</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>把圖切成網格，分 <strong>3</strong> 組輪流遮住一部分。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>學會只看周圍的正常區域，把遮住的地方補回來。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>比較原圖和補回的圖，差越多越可疑（<span class="term">MVTec AD</span> 像素 <span class="term">AUROC</span> <strong>94.2%</strong>）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>一張圖要補 <strong>12</strong> 次；紋理很隨機或只有顏色異常時較弱。</p></div></div></div></div>
 
   <footer class="foot"><span class="reading"><span class="lbl">延伸閱讀</span><a href="../../wiki-html/papers/zavrtanik2021-riad.html#4-方法架構與核心設計">Zavrtanik et al. (2021) — RIAD §4–§6</a> <a href="../../wiki-html/concepts/reconstruction-by-inpainting.html#1-概念定義與解決的問題">遮罩修復重建與多尺度梯度相似度</a></span><span class="lbl pageno">5 / 16</span></footer>
   <aside class="speaker-notes" aria-label="講者備註"><h3 class="lbl">講者備註</h3><ul><li>RIAD 預設採用 $K = \{2, 4, 8, 16\}$ 四種網格尺度與 $n = 3$ 組互斥遮罩，因此單張測試影像共需執行 $4 \times 3 = 12$ 次前向推論。</li></ul></aside>
@@ -292,7 +404,17 @@
   <div class="topbar"><span class="station"><span class="lbl">第 2 站</span><span class="lbl">方法演進</span></span><span class="progress lbl" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span></div>
   <h2 class="title">PatchCore</h2>
   <p class="goal"><span class="lbl">這頁要學會</span>理解 PatchCore 如何在不訓練目標網路權重的前提下，利用預訓練中階局部特徵與貪婪核心集下採樣（Greedy Coreset）達成高精準度與快速推論。</p>
-  <div class="content"><div class="method"><figure class="fig grow"><img src="../../assets/diagrams/roth2022-patchcore-fig2.svg" alt="PatchCore 架構示意圖" /><figcaption><em>示意圖，依論文 Fig. 2 重繪</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>一張圖，用預訓練網路取特徵。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>不訓練網路；正常品局部特徵存進「記憶庫」，再挑 <strong>1%</strong> 當代表。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>離記憶庫最像的特徵多遠（<span class="term">MVTec AD</span> 影像 <span class="term">AUROC</span> <strong>99.0%</strong>、每張 <strong>0.17</strong> 秒）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>特徵非為產線訓練；裁切會漏掉邊緣瑕疵。</p></div></div></div></div>
+  <div class="content"><div class="method"><figure class="fig grow diagram"><div class="teaching-diagram" role="img" aria-label="PatchCore 由正常品建立記憶庫，測試時比較最近鄰距離的兩個流程"><div class="diagram-branches">
+  <ol class="visual-flow feed-row">
+    <li><strong>正常品局部特徵</strong></li>
+    <li class="diagram-highlight"><strong><span class="diagram-phrase">挑代表</span><wbr><span class="diagram-phrase">存入記憶庫</span></strong></li>
+  </ol>
+  <ol class="visual-flow">
+    <li><strong>待測圖局部特徵</strong></li>
+    <li><strong>與記憶庫比對</strong></li>
+    <li><strong><span class="diagram-phrase">最近鄰距離</span><wbr><span class="diagram-phrase">作分數</span></strong></li>
+  </ol>
+</div></div><figcaption><em>示意圖，依論文 Fig. 2 重繪</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>一張圖，用預訓練網路取特徵。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>不訓練網路；正常品局部特徵存進「記憶庫」，再挑 <strong>1%</strong> 當代表。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>離記憶庫最像的特徵多遠（<span class="term">MVTec AD</span> 影像 <span class="term">AUROC</span> <strong>99.0%</strong>、每張 <strong>0.17</strong> 秒）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>特徵非為產線訓練；裁切會漏掉邊緣瑕疵。</p></div></div></div></div>
 
   <footer class="foot"><span class="reading"><span class="lbl">延伸閱讀</span><a href="../../wiki-html/papers/roth2022-patchcore.html#4-方法架構與核心設計">Roth et al. (2022) — PatchCore §4–§6</a> <a href="../../wiki-html/concepts/memory-bank.html#3-核心原理與數學公式出自-roth2022-patchcorepdf-sec-3-p-35">局部特徵記憶庫與核心集下採樣 §3</a></span><span class="lbl pageno">6 / 16</span></footer>
   <aside class="speaker-notes" aria-label="講者備註"><h3 class="lbl">講者備註</h3><ul><li>PatchCore 不需微調網路權重，但仍需擷取正常特徵、建立記憶庫並執行貪婪核心集下採樣；於 MVTec AD Table 5 中，<span class="term">PatchCore-1%</span> 達 99.0% Image AUROC、單張推論 0.17 s，<span class="term">PatchCore-10%</span> 為 0.22 s（Table 5 未測 <span class="term">PatchCore-25%</span> 推論時間）。</li></ul></aside>
@@ -302,7 +424,24 @@
   <div class="topbar"><span class="station"><span class="lbl">第 2 站</span><span class="lbl">方法演進</span></span><span class="progress lbl" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span></div>
   <h2 class="title">DDPM 入門</h2>
   <p class="goal"><span class="lbl">這頁要學會</span>理解去噪擴散機率模型（DDPM）的前向加噪、逆向預測雜訊與單步重建估計 $\hat{\mathbf{x}}_0$，以及如何應用於異常檢測。</p>
-  <div class="content"><div class="side-layout"><div class="side-left"><figure class="fig"><img src="../../assets/diagrams/ho2020-ddpm-fig2.svg" alt="DDPM 前向與逆向過程示意圖" /><figcaption><em>示意圖，依論文 Fig. 2 重繪</em></figcaption></figure><div class="callout"><strong>（AI 整理）</strong> 後兩頁的異常檢測方法，借用這個估計式來重建正常外觀。</div></div><div class="side-right"><div class="card step"><span class="lbl num">1</span><h3>加雜訊（前向）</h3><p>用公式直接算出第 t 步的含噪圖。</p></div><div class="card step"><span class="lbl num">2</span><h3>學去雜訊（逆向）</h3><p>訓練網路預測混入的雜訊；原始 DDPM 生成圖片要走完 <strong>1000</strong> 步。</p></div><div class="card step"><span class="lbl num">3</span><h3>一步估計原圖</h3><p>由含噪圖和預測雜訊，可一步算出原圖的估計值：</p><div class="formula">$$\hat{\mathbf{x}}_0 = \frac{\mathbf{x}_t - \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)}{\sqrt{\bar{\alpha}_t}}$$</div></div></div></div></div>
+  <div class="content"><div class="side-layout"><div class="side-left"><figure class="fig diagram"><div class="teaching-diagram" role="img" aria-label="DDPM 前向由乾淨圖逐步加雜訊，逆向由雜訊逐步去噪"><div class="diagram-branches ddpm-paths">
+  <div>
+    <strong>逐步加雜訊</strong>
+    <div class="diffusion-path">
+      <span class="noise-tile clean">x₀</span><span aria-hidden="true">→</span>
+      <span class="noise-tile mixed">xₜ</span><span aria-hidden="true">→</span>
+      <span class="noise-tile noisy">x<sub>T</sub></span>
+    </div>
+  </div>
+  <div>
+    <strong>反向逐步去雜訊</strong>
+    <div class="diffusion-path">
+      <span class="noise-tile noisy">x<sub>T</sub></span><span aria-hidden="true">→</span>
+      <span class="noise-tile mixed">xₜ</span><span aria-hidden="true">→</span>
+      <span class="noise-tile clean">x₀</span>
+    </div>
+  </div>
+</div></div><figcaption><em>示意圖，依論文 Fig. 2 重繪</em></figcaption></figure><div class="callout"><strong>（AI 整理）</strong> 後兩頁的異常檢測方法，借用這個估計式來重建正常外觀。</div></div><div class="side-right"><div class="card step"><span class="lbl num">1</span><h3>加雜訊（前向）</h3><p>用公式直接算出第 t 步的含噪圖。</p></div><div class="card step"><span class="lbl num">2</span><h3>學去雜訊（逆向）</h3><p>訓練網路預測混入的雜訊；原始 DDPM 生成圖片要走完 <strong>1000</strong> 步。</p></div><div class="card step"><span class="lbl num">3</span><h3>一步估計原圖</h3><p>由含噪圖和預測雜訊，可一步算出原圖的估計值：</p><div class="formula">$$\hat{\mathbf{x}}_0 = \frac{\mathbf{x}_t - \sqrt{1 - \bar{\alpha}_t}\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)}{\sqrt{\bar{\alpha}_t}}$$</div></div></div></div></div>
 
   <footer class="foot"><span class="reading"><span class="lbl">延伸閱讀</span><a href="../../wiki-html/papers/ho2020-ddpm.html#4-方法架構與核心設計">Ho et al. (2020) — DDPM §4–§5</a> <a href="../../wiki-html/concepts/denoising-diffusion-probabilistic-models.html#3-核心數學原理與公式出自-ho2020-ddpmpdf-sec-2--sec-3-p-25">去噪擴散機率模型（DDPM） §3</a></span><span class="lbl pageno">7 / 16</span></footer>
   <aside class="speaker-notes" aria-label="講者備註"><h3 class="lbl">講者備註</h3><ul><li>原始 DDPM 是生成模型：完整生成要從純雜訊逐步去噪 1000 步；一步估計式只是對原圖的估計，不保證任何步數都能得到清楚、無瑕疵的影像。</li><li>「借用估計式來重建正常外觀」是後續方法（DiffusionAD、LAMBDA）的做法（AI 整理）；DiffusionAD 論文另外驗證了在何種加噪強度下一步去噪品質足夠，見第 8 頁。</li></ul></aside>
@@ -312,7 +451,17 @@
   <div class="topbar"><span class="station"><span class="lbl">第 2 站</span><span class="lbl">方法演進</span></span><span class="progress lbl" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span></div>
   <h2 class="title">DiffusionAD</h2>
   <p class="goal"><span class="lbl">這頁要學會</span>理解 DiffusionAD 如何透過「一步去噪（One-step Denoising）」與「雙尺度規範引導（NOD）」兼顧大面積異常抹除、正常細節保留與高速推論。</p>
-  <div class="content"><div class="method"><figure class="fig grow"><img src="../../assets/diagrams/zhang2023-diffusionad-fig3.svg" alt="DiffusionAD 架構示意圖" /><figcaption><em>示意圖，依論文 Fig. 3 重繪</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>推論時同一張圖加兩種雜訊（<strong>200</strong>、<strong>400</strong> 步）。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>訓練去雜訊與分割網路。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>強雜訊版先一步去噪得到正常範本，引導弱雜訊版重建，再與原圖分割（<span class="term">MVTec AD</span> 影像 <span class="term">AUROC</span> <strong>99.7%</strong>）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>雜訊強度固定；合成瑕疵未必逼真。</p></div></div></div></div>
+  <div class="content"><div class="method"><figure class="fig grow diagram"><div class="teaching-diagram" role="img" aria-label="DiffusionAD 以強雜訊分支得到正常範本，引導弱雜訊分支重建，再與原圖分割"><div class="diagram-branches">
+  <ol class="visual-flow feed-row">
+    <li><strong><span class="diagram-phrase">同一原圖</span><wbr><span class="diagram-phrase">加強雜訊</span></strong></li>
+    <li class="diagram-highlight"><strong><span class="diagram-phrase">一步去噪</span><wbr><span class="diagram-phrase">得正常範本</span></strong></li>
+  </ol>
+  <ol class="visual-flow">
+    <li><strong><span class="diagram-phrase">同一原圖</span><wbr><span class="diagram-phrase">加弱雜訊</span></strong></li>
+    <li><strong><span class="diagram-phrase">正常範本</span><wbr><span class="diagram-phrase">引導重建</span></strong></li>
+    <li><strong><span class="diagram-phrase">與原圖</span><wbr><span class="diagram-phrase">一起分割</span></strong></li>
+  </ol>
+</div></div><figcaption><em>示意圖，依論文 Fig. 3 重繪</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>推論時同一張圖加兩種雜訊（<strong>200</strong>、<strong>400</strong> 步）。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>訓練去雜訊與分割網路。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>強雜訊版先一步去噪得到正常範本，引導弱雜訊版重建，再與原圖分割（<span class="term">MVTec AD</span> 影像 <span class="term">AUROC</span> <strong>99.7%</strong>）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>雜訊強度固定；合成瑕疵未必逼真。</p></div></div></div></div>
 
   <footer class="foot"><span class="reading"><span class="lbl">延伸閱讀</span><a href="../../wiki-html/papers/zhang2023-diffusionad.html#4-方法架構與核心設計">Zhang et al. (2023/2025) — DiffusionAD §4–§6</a> <a href="../../wiki-html/concepts/norm-guided-one-step-denoising.html#3-核心原理與數學公式">規範引導一步去噪與合成異常分割 §3</a></span><span class="lbl pageno">8 / 16</span></footer>
   <aside class="speaker-notes" aria-label="講者備註"><h3 class="lbl">講者備註</h3><ul><li>大尺度加噪（400 步）能抹除大面積異常但細節較模糊，小尺度加噪（200 步）能保留正常細節；雙尺度規範引導（NOD）結合兩者優勢並維持一步去噪的高速推論。</li></ul></aside>
@@ -322,7 +471,12 @@
   <div class="topbar"><span class="station"><span class="lbl">第 2 站</span><span class="lbl">方法演進</span></span><span class="progress lbl" aria-hidden="true"><i class="on"></i><i class="on"></i><i class=""></i></span></div>
   <h2 class="title">LAMBDA</h2>
   <p class="goal"><span class="lbl">這頁要學會</span>理解 LAMBDA 如何結合預訓練 <span class="term">VAE</span> 潛在壓縮、記憶庫引導去噪（MBG）與引導尺度圖（GSM），實現輕量化單次一步去噪重建。</p>
-  <div class="content"><div class="method"><figure class="fig grow"><img src="../../assets/diagrams/slides/lee2026-lambda-simple.svg" alt="LAMBDA 精簡流程圖" /><figcaption><em>示意圖，依論文 Fig. 1–3 精簡重繪</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>經 <span class="term">VAE</span> 壓縮（空間面積縮小 <strong>64</strong> 倍）的圖，再加雜訊。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>記憶庫存 <strong>200</strong> 張正常品；訓練去雜訊與分割網路。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>最像的正常樣本引導一步去雜訊，再分割（<span class="term">VisA</span> <span class="term">AUPRO</span> <strong>94.2%</strong>）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>壓縮損失細節；記憶庫大小需調。</p></div></div></div></div>
+  <div class="content"><div class="method"><figure class="fig grow diagram"><div class="teaching-diagram" role="img" aria-label="LAMBDA 在 VAE 壓縮空間由記憶庫與尺度圖引導去噪，解碼後與原圖分割"><ol class="visual-flow">
+  <li><strong>VAE 壓縮加噪</strong></li>
+  <li class="diagram-highlight"><strong>一步去雜訊</strong><small>記憶庫與尺度圖引導</small></li>
+  <li><strong>VAE 解碼還原</strong></li>
+  <li><strong>與原圖一起分割</strong></li>
+</ol></div><figcaption><em>示意圖，依論文 Fig. 1–3 精簡重繪</em></figcaption></figure><div class="qgrid"><div class="card q"><span class="lbl num">1</span><h3>輸入什麼？</h3><p>經 <span class="term">VAE</span> 壓縮（空間面積縮小 <strong>64</strong> 倍）的圖，再加雜訊。</p></div><div class="card q"><span class="lbl num">2</span><h3>保存或學到什麼？</h3><p>記憶庫存 <strong>200</strong> 張正常品；訓練去雜訊與分割網路。</p></div><div class="card q"><span class="lbl num">3</span><h3>怎麼產生異常分數？</h3><p>最像的正常樣本引導一步去雜訊，再分割（<span class="term">VisA</span> <span class="term">AUPRO</span> <strong>94.2%</strong>）。</p></div><div class="card q"><span class="lbl num">4</span><h3>主要限制？</h3><p>壓縮損失細節；記憶庫大小需調。</p></div></div></div></div>
 
   <footer class="foot"><span class="reading"><span class="lbl">延伸閱讀</span><a href="../../wiki-html/papers/lee2026-lambda.html#4-方法架構與核心設計">Lee &amp; Kang (2026) — LAMBDA §4–§6</a> <a href="../../wiki-html/concepts/memory-bank-guided-latent-diffusion.html#3-核心原理與數學公式出自-lee2026-lambdapdf-sec-3--sec-4-p-36">潛在空間記憶庫引導去噪與引導尺度圖 §3</a></span><span class="lbl pageno">9 / 16</span></footer>
   <aside class="speaker-notes" aria-label="講者備註"><h3 class="lbl">講者備註</h3><ul><li>LAMBDA 利用預訓練 <span class="term">VAE</span> 將空間面積縮小 64 倍（不是記憶體縮小 64 倍），並以記憶庫最近鄰檢索取代大尺度去噪分支，搭配引導尺度圖（GSM）於異常處強引導、正常處弱引導。</li><li>投影片用精簡流程圖；完整架構（含合成異常、GSM 計算與訓練損失）見 wiki 的重繪圖 assets/diagrams/lee2026-lambda-fig1.svg。</li></ul></aside>
@@ -352,7 +506,20 @@
   <div class="topbar"><span class="station"><span class="lbl">第 3 站</span><span class="lbl">評測與選型</span></span><span class="progress lbl" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
   <h2 class="title">PRO vs. TPR</h2>
   <p class="goal"><span class="lbl">這頁要學會</span>透過 MVTec AD 2 論文 <span class="term">Fig. 4</span> 的概念示例，理解為何單區域重疊率（PRO）比像素級真陽性率（TPR）更能防止「抓大放小」的評估盲點。</p>
-  <div class="content"><div class="method"><figure class="fig grow"><img src="../../assets/diagrams/slides/pro-vs-tpr-simple.svg" alt="PRO 與 TPR 比較示意圖" /><figcaption><em>示意圖，依論文 Fig. 4 精簡重繪</em></figcaption></figure><div class="row-cards cols3"><div class="card stat"><h3>真陽性率（<span class="term">TPR</span>）</h3><p>把所有瑕疵像素合在一起算抓到幾成，大瑕疵會蓋過小瑕疵。</p></div><div class="card stat"><h3>區域重疊率（<span class="term">PRO</span>）</h3><p>每個瑕疵區域各算一次再平均，大小瑕疵一樣重要。</p></div><div class="card stat"><h3>論文示例</h3><p><strong>3</strong> 個瑕疵只抓到最大的，<span class="term">TPR</span> 仍有 <strong>0.77</strong>，<span class="term">PRO</span> 只有 <strong>0.33</strong>。</p></div></div></div></div>
+  <div class="content"><div class="method"><figure class="fig grow diagram"><div class="teaching-diagram" role="img" aria-label="同一張圖有一大兩小三個瑕疵，模型只標中最大的瑕疵"><div class="region-example">
+  <svg viewBox="0 0 330 128" aria-hidden="true">
+    <rect class="diagram-frame" x="2" y="2" width="326" height="124" rx="10"/>
+    <rect class="defect-missed" x="41" y="27" width="42" height="34" rx="3"/>
+    <rect class="defect-missed" x="107" y="83" width="26" height="25" rx="3"/>
+    <rect class="defect-detected" x="175" y="23" width="117" height="83" rx="4"/>
+    <path class="diagram-line" d="m219 64 9 9 21-20"/>
+  </svg>
+  <div class="defect-legend">
+    <strong>同一張圖，只抓到最大的瑕疵</strong>
+    <span><i class="defect-detected"></i>有抓到</span>
+    <span><i class="defect-missed"></i>漏掉</span>
+  </div>
+</div></div><figcaption><em>示意圖，依論文 Fig. 4 精簡重繪</em></figcaption></figure><div class="row-cards cols3"><div class="card stat"><h3>真陽性率（<span class="term">TPR</span>）</h3><p>把所有瑕疵像素合在一起算抓到幾成，大瑕疵會蓋過小瑕疵。</p></div><div class="card stat"><h3>區域重疊率（<span class="term">PRO</span>）</h3><p>每個瑕疵區域各算一次再平均，大小瑕疵一樣重要。</p></div><div class="card stat"><h3>論文示例</h3><p><strong>3</strong> 個瑕疵只抓到最大的，<span class="term">TPR</span> 仍有 <strong>0.77</strong>，<span class="term">PRO</span> 只有 <strong>0.33</strong>。</p></div></div></div></div>
 
   <footer class="foot"><span class="reading"><span class="lbl">延伸閱讀</span><a href="../../wiki-html/papers/hecklerkram2025-mvtec-ad-2.html#a-無閾值指標threshold-independent-metricstextau-pro_005-與-textau-pro_030">Heckler-Kram et al. (2025) — MVTec AD 2 §4.5 (A)</a> <a href="../../wiki-html/datasets/mvtec-ad-2.html#4-評估指標定義textau-pro_005-vs-textau-pro_030-與二值化-f_1出自-hecklerkram2025-mvtec-ad-2pdf-sec-42-p-89--supplemental-material-b-p-14">MVTec AD 2 資料集與進階評估協定 §4</a></span><span class="lbl pageno">12 / 16</span></footer>
   <aside class="speaker-notes" aria-label="講者備註"><h3 class="lbl">講者備註</h3><ul><li>圖中數字是論文 Fig. 4 的概念示例（3 個瑕疵區域面積為 4、2、20 像素），不是模型實驗結果。情境 iii 檢出兩個小瑕疵、漏掉大瑕疵時 PRO = 0.67、TPR = 0.23；情境 iv 相反，TPR = 0.77、PRO = 0.33。</li><li>公式中 k 是測試集裡瑕疵區域的總數，C 是單一瑕疵區域，P 是模型判為異常的像素。</li><li>PRO 的定義式（不放投影片）：$\text{PRO} = \frac{1}{k} \sum_{i=1}^{|D_{\text{test}}|} \sum_{j=1}^{k_i} \frac{|P_{\text{ano}} \cap C_{i,j}|}{|C_{i,j}|}$。</li><li>投影片用的是精簡圖；完整的四種情境計算見 wiki 的 Fig. 4 重繪圖（assets/diagrams/hecklerkram2025-mvtec-ad-2-fig4.svg）。</li></ul></aside>

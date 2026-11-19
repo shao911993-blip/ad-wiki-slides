@@ -1,0 +1,18 @@
+<div class="diagram-branches ddpm-paths">
+  <div>
+    <strong>逐步加雜訊</strong>
+    <div class="diffusion-path">
+      <span class="noise-tile clean">x₀</span><span aria-hidden="true">→</span>
+      <span class="noise-tile mixed">xₜ</span><span aria-hidden="true">→</span>
+      <span class="noise-tile noisy">x<sub>T</sub></span>
+    </div>
+  </div>
+  <div>
+    <strong>反向逐步去雜訊</strong>
+    <div class="diffusion-path">
+      <span class="noise-tile noisy">x<sub>T</sub></span><span aria-hidden="true">→</span>
+      <span class="noise-tile mixed">xₜ</span><span aria-hidden="true">→</span>
+      <span class="noise-tile clean">x₀</span>
+    </div>
+  </div>
+</div>
