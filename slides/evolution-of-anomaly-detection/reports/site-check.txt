@@ -1,0 +1,2 @@
+Static links: 20 pages, 750 local links/assets, 30 HTML anchors
+PASS (0 issues)

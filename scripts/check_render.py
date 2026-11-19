@@ -17,7 +17,6 @@ import http.server
 import json
 import os
 import re
-import socketserver
 import sys
 import threading
 import unicodedata
@@ -52,7 +51,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
-httpd = socketserver.TCPServer(("127.0.0.1", 0), Handler)
+httpd = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
 threading.Thread(target=httpd.serve_forever, daemon=True).start()
 BASE = f"http://127.0.0.1:{httpd.server_address[1]}/{DECK}"
 
@@ -98,8 +97,11 @@ MEASURE = r"""() => {
     const f = parseFloat(getComputedStyle(el).fontSize) * (narrow ? 1 : scale);
     if (f < minFont) { minFont = f; minFontEl = el.tagName + '.' + el.className; }
   });
-  const imgs = [...s.querySelectorAll('img')].filter(vis).map(i => ({src: i.getAttribute('src'), ok: i.complete && i.naturalWidth > 0,
-    h: Math.round(i.getBoundingClientRect().height / (narrow ? 1 : scale)), fig: !!i.closest('.fig')}));
+  const imgs = [...s.querySelectorAll('img')].filter(i => i.closest('.fig') || vis(i)).map(i => {
+    const rect = i.getBoundingClientRect();
+    return {ok: i.complete && i.naturalWidth > 0, visible: vis(i) && rect.width > 0 && rect.height > 0,
+      h: Math.round(rect.height / (narrow ? 1 : scale)), fig: !!i.closest('.fig')};
+  });
   const broken = [];
   s.querySelectorAll('table td, table th').forEach(cell => {
     const w = document.createTreeWalker(cell, NodeFilter.SHOW_TEXT); let t;
@@ -138,11 +140,15 @@ with sync_playwright() as p:
             page.wait_for_timeout(150)
             page.evaluate("document.querySelectorAll('.slide.active [data-reveal]').forEach(e => e.classList.add('open'))")
             page.evaluate("window.dispatchEvent(new Event('resize'))")
+            page.evaluate("""Promise.allSettled([...document.querySelectorAll('.slide.active img')]
+                .map(img => img.decode()))""")
             page.wait_for_timeout(120)
             res.append(page.evaluate(MEASURE))
             if args.screenshots and name == "desktop-1366x768":
                 page.evaluate("document.querySelectorAll('[data-reveal]').forEach(e => e.classList.remove('open'))")
                 page.screenshot(path=str(SHOTS / f"{name}-{n:02d}.png"))
+            if args.screenshots and name == "mobile-390x844" and n in (5, 8, 12):
+                page.screenshot(path=str(SHOTS / f"{name}-{n:02d}.png"), full_page=True)
         nav = {}
         page.goto(BASE + "#1"); page.wait_for_timeout(200)
         page.keyboard.press("ArrowRight"); nav["ArrowRight_from_1"] = page.inner_text("#page-indicator")
@@ -173,7 +179,7 @@ httpd.shutdown()
 lines = []
 P = lines.append
 P("關卡 ④ 瀏覽器渲染檢查報告（scripts/check_render.py 產生）")
-P(f"受檢檔案：{DECK}；KaTeX 來源：{'本機 ' + str(KATEX) if KATEX else 'CDN'}")
+P(f"受檢檔案：{DECK}；KaTeX 來源：{'本機 0.16.11' if KATEX else 'CDN'}")
 P("桌面：1280×720 畫布等比例縮放，檢查內文不壓到標題／頁尾、元素不超出畫布、圖不被壓到最小高度（150 px）；「餘裕」為內文底端到頁尾的距離（畫布座標）。")
 P("手機：寬 ≤ 760 改為直向捲動，檢查元素不超出畫面寬度。全部視窗：圖片、表格拆字、KaTeX、換頁與備註。")
 errors = 0
@@ -200,6 +206,8 @@ for name, r in results.items():
             flag.append("公式錯誤")
         if not all(i["ok"] for i in m["imgs"]):
             flag.append("圖片未載入")
+        if any(i["fig"] and not i["visible"] for i in m["imgs"]):
+            flag.append("教學圖未顯示")
         if desk and any(i["fig"] and i["h"] <= 151 for i in m["imgs"]):
             flag.append("圖被壓到最小高度")
         errors += bool(flag)

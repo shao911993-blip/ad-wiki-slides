@@ -12,3 +12,16 @@ math_broken: OVERALL RESULT: FAILED (6 error(s)) ['第  7 頁：餘裕 36 px，�
 keyboard_broken: OVERALL RESULT: FAILED (5 error(s)) ['換頁、備註、解答按鈕：FAIL {"ArrowRight_from_1": "1 / 16"}']
 notes_visible: OVERALL RESULT: FAILED (26 error(s)) ['第  1 頁：最小字 15.5 px → 超出畫布:title,cover-goal,claim,STRONG,route']
 answer_always_shown: OVERALL RESULT: FAILED (5 error(s)) ['換頁、備註、解答按鈕：FAIL {"answer_hidden_default": "block"}']
+
+2026-11-19 補測：只在暫存頁對窄螢幕方法圖植入 height: 0。
+預期：檢查失敗並逐頁列出未顯示的教學圖。
+實際：檢查失敗，找到 8 次未顯示的教學圖。
+  第  5 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+  第  6 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+  第  8 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+  第  9 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+  第  5 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+  第  6 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+  第  8 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+  第  9 頁：圖高 0 px，最小字 16.5 px → 教學圖未顯示
+突變測試 PASS

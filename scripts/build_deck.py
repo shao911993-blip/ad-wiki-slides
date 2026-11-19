@@ -30,6 +30,13 @@ def fix_path(p):
     return p[3:] if p.startswith("../") else p
 
 
+def reading_link(path):
+    path, sep, fragment = fix_path(path).partition("#")
+    if path.startswith("../../wiki/") and path.endswith(".md"):
+        path = path.replace("../../wiki/", "../../wiki-html/", 1).removesuffix(".md") + ".html"
+    return path + sep + fragment
+
+
 SUBS = [
     (re.compile(r"AU-PRO(0\.\d\d)"), r"AU-PRO<sub>\1</sub>"),
     (re.compile(r"TESTpriv,mix"), r"TEST<sub>priv,mix</sub>"),
@@ -64,7 +71,7 @@ def _inline_text(s):
     s = re.sub(r"`([^`]+)`", keep, s)
     s = html.escape(s, quote=False)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
-               lambda m: f'<a href="{html.escape(fix_path(m.group(2)))}">{m.group(1)}</a>', s)
+               lambda m: f'<a href="{html.escape(reading_link(m.group(2)))}">{m.group(1)}</a>', s)
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?!\*)", r"<em>\1</em>", s)
     s = subs(s)
@@ -345,7 +352,7 @@ def render_slide(n, total, text, cfg):
         chip = f'<span class="station">{L(cfg["appendix_label"])}</span>'
         cls, on = "s0", len(cfg["stations"])
     prog = "".join(f'<i class="{"on" if i < on else ""}"></i>' for i in range(len(cfg["stations"])))
-    mascot = (f'<img class="mascot-peek" src="{cfg["mascot"]}" alt="" aria-hidden="true" />'
+    mascot = (f'  <img class="mascot-peek" src="{cfg["mascot"]}" alt="" aria-hidden="true" />'
               if n in cfg.get("mascot_pages", []) else "")
     return f'''
 <section class="slide {cls} lay-{spec["layout"]}" id="slide-{n}" data-n="{n}" aria-label="第 {n} 頁">
@@ -353,7 +360,7 @@ def render_slide(n, total, text, cfg):
   <h2 class="title">{inline(pg["title"])}</h2>
   <p class="goal">{L("這頁要學會")}{inline(pg["goal"])}</p>
   <div class="content">{body}</div>
-  {mascot}
+{mascot}
   {foot}
   {notes_html}
 </section>'''
@@ -370,7 +377,7 @@ def main():
     slides = "\n".join(render_slide(i + 1, total, p.read_text(encoding="utf-8"), cfg) for i, p in enumerate(drafts))
     tpl = (Path(__file__).parent / "deck_template.html").read_text(encoding="utf-8")
     out = tpl.replace("{{SLIDES}}", slides).replace("{{TOTAL}}", str(total)).replace("{{DECK_TITLE}}", cfg["deck_title"])
-    (deck / "index.html").write_text(out, encoding="utf-8")
+    (deck / "index.html").write_text(out, encoding="utf-8", newline="\n")
     print(f"wrote {deck / 'index.html'} ({total} slides)")
 
 

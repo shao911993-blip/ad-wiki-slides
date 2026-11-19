@@ -3,11 +3,11 @@ Gate ① Programmatic Check Report: slides\evolution-of-anomaly-detection\outlin
 ======================================================================
 
 [0] AGENTS.md Character Count & Density Rule Check
-  [PASS] AGENTS.md length = 10123 chars (<= 12,000 limit)
+  [PASS] AGENTS.md length = 10772 chars (<= 12,000 limit)
   [PASS] AGENTS.md §5 includes '投影片密度規則' (1366×768 single-screen rule)
 
 [1] Base Wiki Commit & Cover Declaration Check
-  [PASS] Outline records current wiki commit: df11944 (df11944472bf30fe7e23a34dccba2e15e376f78a)
+  [PASS] Outline records current wiki commit: 8db19ba (8db19ba45973a555bbed160030218f2644548215)
   [PASS] Cover note present: '這是選定 7 篇論文的發展脈絡，不代表後面的方法全面取代前面的'
 
 [2] Slide Count, Sequential Numbering, Learning Objectives & Density Sections Check

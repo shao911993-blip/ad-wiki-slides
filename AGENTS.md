@@ -141,6 +141,7 @@ ad-wiki-slides/
 ## 6. 前端技術、視覺風格與繪圖規範（`index.html`、`slides/`、`assets/`）
 
 - **純靜態與相對路徑**：僅使用原生 HTML5、CSS（`assets/style.css`）與輕量原生 JS（No Build Step），全站資源與連結一律使用**相對路徑**。
+- **Wiki 閱讀頁**：Wiki 更新後以 `python scripts/build_wiki.py` 從 Markdown 重建 `wiki-html/`（需 `markdown-it-py` 與 `mdit-py-plugins`）。提交前執行 `python scripts/check_site.py` 驗證入口、簡報、閱讀頁與引用錨點。
 - **簡報原生 JS 換頁**：簡報換頁使用**原生 JS 自行撰寫**（支援左右方向鍵、按鈕、頁碼顯示）。
 - **RWD 與防破版規定**：電腦與手機版**皆不能出現左右水平捲動軸**；表格在手機上**不能把英文單字拆開換行**。
 - **數學公式與 SVG 示意圖**：
