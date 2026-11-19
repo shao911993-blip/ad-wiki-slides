@@ -1,0 +1,55 @@
+============================================================================
+OUTLINE CHECKER MUTATION TEST REPORT
+Target Checker: scripts/check_outline.py
+Source Outline: slides/evolution-of-anomaly-detection/outline.md
+============================================================================
+[Baseline] Original unmodified outline.md: PASS (expected PASS)
+----------------------------------------------------------------------------
+Mutation (a) 第 10 頁方法欄改為 RIAD
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 10 Claim C10-01: row for method 'RIAD' not found in Markdown table of referenced wiki section
+----------------------------------------------------------------------------
+Mutation (b) 第 10 頁資料集改為 MVTec AD 2
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 10 Claim C10-01: dataset 'MVTec AD 2' (from 'MVTec AD 2') not found in referenced wiki section
+----------------------------------------------------------------------------
+Mutation (c) 第 10 頁指標欄改為 Accuracy
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 10 Claim C10-01: column for metric 'Accuracy' not found in Markdown table headers ['Model', 'Image AUROC', 'Image AP', 'Pixel AUROC', 'Pixel AP', 'Pixel AUPRO', 'mAD', 'GPU Mem (Train)', 'GPU Mem (Eval)', 'FPS (Train)', 'FPS (Eval)']
+----------------------------------------------------------------------------
+Mutation (d) 第 14 頁 PatchCore 的方法欄改為 LAMBDA
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 14 Claim C14-01: row for method 'LAMBDA' not found in Markdown table of referenced wiki section
+----------------------------------------------------------------------------
+Mutation (e) 第 14 頁來源改為不存在的 wiki 檔
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 14 claim C14-01: 'wiki 頁與段落' references non-existent file 'wiki/papers/nonexistent-paper.md'
+----------------------------------------------------------------------------
+Mutation (f) 第 14 頁某個數值改掉 0.1 (92.7 -> 92.8)
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 14 Claim C14-01: positional mismatch at metric #1 (row='PatchCore', col='MVTec AD AU-PRO0.30 (%)'): table cell value '92.7' does not match 數值與條件 item #1 '92.8' (full: '92.8 / 79.7 / 53.8')
+----------------------------------------------------------------------------
+Mutation (g) C14-05 的數值欄 91.2 / 88.4 / 52.7 改成 88.4 / 91.2 / 52.7（位置對應測試）
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 14 Claim C14-05: positional mismatch at metric #1 (row='MSFlow', col='MVTec AD AU-PRO0.30 (%)'): table cell value '91.2' does not match 數值與條件 item #1 '88.4' (full: '88.4 / 91.2 / 52.7')
+----------------------------------------------------------------------------
+Mutation (h) C03-01 的 5,354 改成 5,345（待 AI 審查主張之千分位數字存在性測試）
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 03 Claim C03-01（待 AI 審查）：數字 ['5,345', '5,345'] 未出現在所引 wiki 段落內（`wiki/papers/bergmann2019-mvtec-ad.md` `## 4. 資料集規格與評估指標`）
+----------------------------------------------------------------------------
+Mutation (i) C11-02 的 8,004 改成 8,400（待 AI 審查主張之千分位數字存在性測試）
+  Result : Checker returned FAIL [EXPECTED -> TEST PASS]
+  Errors caught (1):
+    * Slide 11 Claim C11-02（待 AI 審查）：數字 ['8,400', '8,400'] 未出現在所引 wiki 段落內（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 4. 資料集規格、取像設定與評估指標`）
+----------------------------------------------------------------------------
+SUMMARY: 9/9 injected mutations failed check_outline.py as required.
+OVERALL MUTATION TEST RESULT: PASSED (ALL 9 MUTATIONS CAUGHT AS FAIL)
+============================================================================

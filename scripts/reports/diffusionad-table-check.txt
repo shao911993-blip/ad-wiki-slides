@@ -1,0 +1,5 @@
+﻿Table I (VisA I/O): checked 104 cells (208 numbers), errors = 0
+Table II (VisA P/A): checked 104 cells (208 numbers), errors = 0
+Table III (MVTec I/P): checked 128 cells (256 numbers), errors = 0
+Table IV (MVTec O/A): checked 128 cells (256 numbers), errors = 0
+=== TOTAL Table I-IV: checked 464 cells (928 numbers), errors = 0 ===

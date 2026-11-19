@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 390" width="100%" height="auto" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#18181B"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#52525B"/>
+    </marker>
+  </defs>
+
+  <!-- Outer Card Background -->
+  <rect x="2" y="2" width="916" height="386" rx="6" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="1"/>
+
+  <!-- (a) Anomaly Synthesis Strategy -->
+  <rect x="14" y="16" width="148" height="222" rx="6" fill="#F7F6F2" stroke="#A1A1AA" stroke-width="1.2"/>
+  <text x="88" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">(a) 異常合成策略</text>
+  <text x="88" y="48" text-anchor="middle" font-size="9.5" fill="#52525B">Anomaly Synthesis</text>
+
+  <rect x="24" y="58" width="128" height="44" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.2"/>
+  <text x="88" y="76" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">輸入影像 I</text>
+  <text x="88" y="92" text-anchor="middle" font-size="9.5" fill="#52525B">RGB ∈ ℝ<tspan baseline-shift="super" font-size="72%">3×H×W</tspan></text>
+
+  <line x1="88" y1="102" x2="88" y2="118" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="24" y="122" width="128" height="50" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.2"/>
+  <text x="88" y="140" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">Perlin 雜訊 + DTD 紋理</text>
+  <text x="88" y="155" text-anchor="middle" font-size="9.5" fill="#52525B">結合前景圖與自身增強</text>
+  <text x="88" y="167" text-anchor="middle" font-size="9" fill="#52525B">(訓練正常:異常 = 1:1)</text>
+
+  <line x1="88" y1="172" x2="88" y2="186" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="24" y="190" width="128" height="38" rx="4" fill="#E4E4E7" stroke="#18181B" stroke-width="1.3"/>
+  <text x="88" y="207" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">合成影像 I′ 與遮罩 M</text>
+  <text x="88" y="221" text-anchor="middle" font-size="9.5" fill="#52525B">(測試期直接輸入待測圖)</text>
+
+  <!-- (b) Pretrained VAE & Denoising Sub-network -->
+  <rect x="176" y="16" width="194" height="222" rx="6" fill="#F7F6F2" stroke="#A1A1AA" stroke-width="1.2"/>
+  <text x="273" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">(b) 潛在空間編碼與去噪網路</text>
+  <text x="273" y="48" text-anchor="middle" font-size="9.5" fill="#52525B">Pretrained VAE &amp; Denoising U-Net</text>
+
+  <rect x="188" y="58" width="170" height="44" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.2"/>
+  <text x="273" y="76" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">預訓練 VAE Encoder E(·)</text>
+  <text x="273" y="92" text-anchor="middle" font-size="9.5" fill="#52525B">潛在表徵 L ∈ ℝ<tspan baseline-shift="super" font-size="72%">4×H/8×W/8</tspan></text>
+
+  <line x1="152" y1="209" x2="168" y2="209" stroke="#18181B" stroke-width="1.4"/>
+  <path d="M 168 209 L 168 80 L 184 80" fill="none" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <line x1="273" y1="102" x2="273" y2="118" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="188" y="122" width="170" height="46" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.2"/>
+  <text x="273" y="140" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">前向高斯加噪 L<tspan baseline-shift="sub" font-size="72%">t</tspan> (Eq. 1)</text>
+  <text x="273" y="156" text-anchor="middle" font-size="9.5" fill="#52525B">訓練 t ~ U(1, T=1000)｜測試 t<tspan baseline-shift="sub" font-size="72%">s</tspan>=200</text>
+
+  <line x1="273" y1="168" x2="273" y2="182" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="188" y="186" width="170" height="42" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+  <text x="273" y="204" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">Denoising Sub-network</text>
+  <text x="273" y="219" text-anchor="middle" font-size="9.5" fill="#52525B">預測雜訊 ε<tspan baseline-shift="sub" font-size="72%">θ</tspan>(L<tspan baseline-shift="sub" font-size="72%">t</tspan>, t) (損失 L<tspan baseline-shift="sub" font-size="72%">denoise</tspan>)</text>
+
+  <!-- (c) Memory Bank & Guidance Scale Map (GSM) -->
+  <rect x="384" y="16" width="268" height="222" rx="6" fill="#F7F6F2" stroke="#A1A1AA" stroke-width="1.2"/>
+  <text x="518" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">(c) 記憶庫檢索與引導尺度圖 (GSM)</text>
+  <text x="518" y="48" text-anchor="middle" font-size="9.5" fill="#52525B">Memory Bank M<tspan baseline-shift="sub" font-size="72%">b</tspan> &amp; Guidance Scale Map (Fig. 3, Eq. 6–7)</text>
+
+  <rect x="396" y="58" width="244" height="46" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.3"/>
+  <text x="518" y="76" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">正常潛在記憶庫 M<tspan baseline-shift="sub" font-size="72%">b</tspan> ∈ ℝ<tspan baseline-shift="super" font-size="72%">n<tspan baseline-shift="sub" font-size="75%">m</tspan> × d</tspan> (n<tspan baseline-shift="sub" font-size="72%">m</tspan> = 200)</text>
+  <text x="518" y="93" text-anchor="middle" font-size="9.5" fill="#52525B">以 Cosine 相似度檢索最相似正常樣本 → Guide Latent L<tspan baseline-shift="super" font-size="72%">g</tspan></text>
+
+  <!-- Arrow from L / L_t to Memory Bank -->
+  <line x1="358" y1="80" x2="392" y2="80" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="396" y="116" width="116" height="52" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.1"/>
+  <text x="454" y="135" text-anchor="middle" font-size="10" font-weight="700" fill="#18181B">像素距離圖 L<tspan baseline-shift="super" font-size="72%">D</tspan></text>
+  <text x="454" y="150" text-anchor="middle" font-size="9.5" fill="#52525B">計算 L 與 L<tspan baseline-shift="super" font-size="72%">g</tspan></text>
+  <text x="454" y="162" text-anchor="middle" font-size="9" fill="#52525B">各位置 (h, w) 距離</text>
+
+  <rect x="524" y="116" width="116" height="52" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.1"/>
+  <text x="582" y="135" text-anchor="middle" font-size="10" font-weight="700" fill="#18181B">記憶庫平均距離 M<tspan baseline-shift="sub" font-size="72%">b</tspan><tspan baseline-shift="super" font-size="72%">D</tspan></text>
+  <text x="582" y="150" text-anchor="middle" font-size="9.5" fill="#52525B">統計 n<tspan baseline-shift="sub" font-size="72%">m</tspan> 樣本之</text>
+  <text x="582" y="162" text-anchor="middle" font-size="9" fill="#52525B">均值 M̄<tspan baseline-shift="sub" font-size="72%">b</tspan><tspan baseline-shift="super" font-size="72%">D</tspan> 與 std(M<tspan baseline-shift="sub" font-size="72%">b</tspan><tspan baseline-shift="super" font-size="72%">D</tspan>)</text>
+
+  <line x1="454" y1="104" x2="454" y2="114" stroke="#18181B" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="582" y1="104" x2="582" y2="114" stroke="#18181B" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <rect x="396" y="182" width="244" height="46" rx="4" fill="#E4E4E7" stroke="#18181B" stroke-width="1.3"/>
+  <text x="518" y="200" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">空間自適應引導尺度圖 G (Eq. 6–7)</text>
+  <text x="518" y="217" text-anchor="middle" font-size="9.5" fill="#18181B">L̃<tspan baseline-shift="sub" font-size="72%">h,w</tspan><tspan baseline-shift="super" font-size="72%">D</tspan> = (L<tspan baseline-shift="sub" font-size="72%">h,w</tspan><tspan baseline-shift="super" font-size="72%">D</tspan> − M̄<tspan baseline-shift="sub" font-size="72%">b</tspan><tspan baseline-shift="super" font-size="72%">D</tspan>) / std(M<tspan baseline-shift="sub" font-size="72%">b</tspan><tspan baseline-shift="super" font-size="72%">D</tspan>)  →  G<tspan baseline-shift="sub" font-size="72%">h,w</tspan> = ‖dist(L̃<tspan baseline-shift="sub" font-size="72%">h,w</tspan><tspan baseline-shift="super" font-size="72%">D</tspan>, M<tspan baseline-shift="sub" font-size="72%">b h,w</tspan><tspan baseline-shift="super" font-size="72%">D</tspan>)‖</text>
+
+  <line x1="454" y1="168" x2="454" y2="180" stroke="#18181B" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="582" y1="168" x2="582" y2="180" stroke="#18181B" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- (d) Memory Bank-Guided Denoising (MBG) -->
+  <rect x="176" y="252" width="476" height="122" rx="6" fill="#F7F6F2" stroke="#A1A1AA" stroke-width="1.2"/>
+  <text x="414" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">(d) 記憶庫引導一步去噪機制 (Memory Bank-Guided Denoising, MBG — Fig. 2, Eq. 4–5)</text>
+
+  <rect x="188" y="282" width="236" height="78" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.3"/>
+  <text x="306" y="302" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">1. 擾動參考樣本與空間自適應雜訊修正</text>
+  <text x="306" y="320" text-anchor="middle" font-size="9.5" fill="#52525B">將 L<tspan baseline-shift="super" font-size="72%">g</tspan> 依相同雜訊排程與 ε<tspan baseline-shift="sub" font-size="72%">θ</tspan> 擾動為 L<tspan baseline-shift="sub" font-size="72%">t</tspan><tspan baseline-shift="super" font-size="72%">g</tspan></text>
+  <text x="306" y="338" text-anchor="middle" font-size="10" font-weight="700" fill="#18181B">ε̂<tspan baseline-shift="sub" font-size="72%">θ</tspan> = ε<tspan baseline-shift="sub" font-size="72%">θ</tspan>(L<tspan baseline-shift="sub" font-size="72%">t</tspan>, t) − G · √(1 − ᾱ<tspan baseline-shift="sub" font-size="72%">t</tspan>) · ∇<tspan baseline-shift="sub" font-size="72%">L<tspan baseline-shift="sub" font-size="75%">t</tspan></tspan> sim(L<tspan baseline-shift="sub" font-size="72%">t</tspan>, L<tspan baseline-shift="sub" font-size="72%">t</tspan><tspan baseline-shift="super" font-size="72%">g</tspan>)</text>
+  <text x="306" y="353" text-anchor="middle" font-size="9" fill="#52525B">(異常區 G 值高→強引導修復；正常區 G 值低→微引導保真)</text>
+
+  <line x1="424" y1="321" x2="444" y2="321" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="448" y="282" width="192" height="78" rx="4" fill="#E4E4E7" stroke="#18181B" stroke-width="1.4"/>
+  <text x="544" y="304" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">2. 潛在空間一步去噪 (Eq. 4)</text>
+  <text x="544" y="326" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">L̂<tspan baseline-shift="sub" font-size="72%">0</tspan> = (L<tspan baseline-shift="sub" font-size="72%">t</tspan> − √(1 − ᾱ<tspan baseline-shift="sub" font-size="72%">t</tspan>) · ε̂<tspan baseline-shift="sub" font-size="72%">θ</tspan>) / √ᾱ<tspan baseline-shift="sub" font-size="72%">t</tspan></text>
+  <text x="544" y="347" text-anchor="middle" font-size="9.5" fill="#52525B">單次前向一步重建乾淨潛在表徵 L̂<tspan baseline-shift="sub" font-size="72%">0</tspan></text>
+
+  <!-- Arrows from (b) and (c) into (d) -->
+  <line x1="273" y1="228" x2="273" y2="278" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="518" y1="228" x2="518" y2="246" stroke="#18181B" stroke-width="1.4"/>
+  <path d="M 518 246 L 360 246 L 360 278" fill="none" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- (e) Pretrained VAE Decoder & Segmentation Sub-network -->
+  <rect x="666" y="16" width="238" height="358" rx="6" fill="#F7F6F2" stroke="#A1A1AA" stroke-width="1.2"/>
+  <text x="785" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">(e) 重建解碼與分割子網路</text>
+  <text x="785" y="48" text-anchor="middle" font-size="9.5" fill="#52525B">Reconstruction &amp; Segmentation Sub-network</text>
+
+  <rect x="680" y="62" width="210" height="48" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.3"/>
+  <text x="785" y="81" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">預訓練 VAE Decoder</text>
+  <text x="785" y="98" text-anchor="middle" font-size="9.5" fill="#52525B">將 L̂<tspan baseline-shift="sub" font-size="72%">0</tspan> 解碼為無異常重建影像 Î</text>
+
+  <!-- Arrow from (d) L^hat_0 to VAE Decoder -->
+  <path d="M 640 321 L 658 321 L 658 86 L 676 86" fill="none" stroke="#18181B" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="785" y1="110" x2="785" y2="128" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="680" y="132" width="210" height="48" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.3"/>
+  <text x="785" y="151" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">通道拼接 Concat(I′, Î)</text>
+  <text x="785" y="168" text-anchor="middle" font-size="9.5" fill="#52525B">保留輸入影像 I′ 與重建影像 Î 空間對應</text>
+
+  <!-- Bypass arrow from (a) I' to Concat -->
+  <path d="M 88 238 L 88 382 L 908 382 L 908 156 L 894 156" fill="none" stroke="#52525B" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#arrow-muted)"/>
+
+  <line x1="785" y1="180" x2="785" y2="198" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="680" y="202" width="210" height="46" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+  <text x="785" y="221" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">Segmentation Sub-network</text>
+  <text x="785" y="238" text-anchor="middle" font-size="9.5" fill="#52525B">U-Net 架構分析局部結構差異</text>
+
+  <line x1="785" y1="248" x2="785" y2="266" stroke="#18181B" stroke-width="1.3" marker-end="url(#arrow)"/>
+
+  <rect x="680" y="270" width="210" height="44" rx="4" fill="#E4E4E7" stroke="#18181B" stroke-width="1.5"/>
+  <text x="785" y="288" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">預測異常遮罩圖 M̂</text>
+  <text x="785" y="304" text-anchor="middle" font-size="9.5" fill="#18181B">像素分數 = M̂｜影像分數 = mean(top-K(M̂))</text>
+
+  <rect x="680" y="324" width="210" height="38" rx="4" fill="#FFFFFF" stroke="#52525B" stroke-width="1.1" stroke-dasharray="4 3"/>
+  <text x="785" y="340" text-anchor="middle" font-size="10" font-weight="700" fill="#18181B">聯合損失 L<tspan baseline-shift="sub" font-size="72%">total</tspan> = L<tspan baseline-shift="sub" font-size="72%">denoise</tspan> + L<tspan baseline-shift="sub" font-size="72%">segment</tspan></text>
+  <text x="785" y="354" text-anchor="middle" font-size="9" fill="#52525B">L<tspan baseline-shift="sub" font-size="72%">segment</tspan> = L<tspan baseline-shift="sub" font-size="72%">SmoothL1</tspan>(M, M̂) + λ L<tspan baseline-shift="sub" font-size="72%">focal</tspan>(M, M̂)</text>
+</svg>

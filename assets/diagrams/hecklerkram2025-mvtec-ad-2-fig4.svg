@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 310" width="100%" height="auto" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+  <!-- Outer Card Background -->
+  <rect x="2" y="2" width="916" height="306" rx="6" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="1"/>
+
+  <!-- Headers -->
+  <text x="106" y="26" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">ground truth (真實標註)</text>
+  <text x="556" y="26" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">thresholded predictions (二值化預測結果)</text>
+
+  <!-- Vertical Separator -->
+  <line x1="204" y1="14" x2="204" y2="294" stroke="#71717A" stroke-width="1.2"/>
+
+  <!-- Case Labels -->
+  <text x="292" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">i)</text>
+  <text x="468" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">ii)</text>
+  <text x="644" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">iii)</text>
+  <text x="820" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">iv)</text>
+
+  <!-- Reusable 8x7 Grid Base Definition (cell size = 18x18, total = 144x126) -->
+  <defs>
+    <g id="base-grid">
+      <!-- Background anomaly-free pixels -->
+      <rect x="0" y="0" width="144" height="126" fill="#E4E4E7" stroke="#71717A" stroke-width="0.8"/>
+      <!-- Anomalous Regions (dark gray #52525B) -->
+      <!-- Region 1: cols 1..2, rows 1..2 (4 pixels) -->
+      <rect x="18" y="18" width="36" height="36" fill="#52525B"/>
+      <!-- Region 2: col 1, rows 4..5 (2 pixels) -->
+      <rect x="18" y="72" width="18" height="36" fill="#52525B"/>
+      <!-- Region 3: cols 4..7, rows 1..5 (20 pixels) -->
+      <rect x="72" y="18" width="72" height="90" fill="#52525B"/>
+      <!-- Internal Grid Lines (vertical: x = 18, 36, 54, 72, 90, 108, 126) -->
+      <path d="M18,0 V126 M36,0 V126 M54,0 V126 M72,0 V126 M90,0 V126 M108,0 V126 M126,0 V126" stroke="#71717A" stroke-width="0.6"/>
+      <!-- Internal Grid Lines (horizontal: y = 18, 36, 54, 72, 90, 108) -->
+      <path d="M0,18 H144 M0,36 H144 M0,54 H144 M0,72 H144 M0,90 H144 M0,108 H144" stroke="#71717A" stroke-width="0.6"/>
+    </g>
+    <!-- Red predicted pixel cell -->
+    <rect id="pred-cell" width="18" height="18" fill="none" stroke="#DC2626" stroke-width="1.6"/>
+  </defs>
+
+  <!-- 0. Ground Truth Grid (x=34, y=54) -->
+  <g transform="translate(34, 54)">
+    <use href="#base-grid"/>
+  </g>
+
+  <!-- Legend under Ground Truth -->
+  <g transform="translate(22, 194)">
+    <rect x="0" y="0" width="166" height="86" rx="3" fill="#FAFAFA" stroke="#A1A1AA" stroke-width="0.8"/>
+    <rect x="10" y="10" width="16" height="16" fill="#E4E4E7" stroke="#52525B" stroke-width="0.8"/>
+    <text x="34" y="22" font-size="9.5" fill="#18181B">anomaly-free pixel (正常像素)</text>
+
+    <rect x="10" y="34" width="16" height="16" fill="#52525B" stroke="#27272A" stroke-width="0.8"/>
+    <text x="34" y="46" font-size="9.5" fill="#18181B">anomalous pixel (真實異常)</text>
+
+    <rect x="10" y="58" width="16" height="16" fill="#52525B" stroke="#DC2626" stroke-width="1.8"/>
+    <text x="34" y="70" font-size="9.5" fill="#18181B">predicted anomalous (預測異常)</text>
+  </g>
+
+  <!-- i) All 3 regions predicted (x=220, y=54) -->
+  <g transform="translate(220, 54)">
+    <use href="#base-grid"/>
+    <!-- Region 1 (4 cells) -->
+    <use href="#pred-cell" x="18" y="18"/><use href="#pred-cell" x="36" y="18"/>
+    <use href="#pred-cell" x="18" y="36"/><use href="#pred-cell" x="36" y="36"/>
+    <!-- Region 2 (2 cells) -->
+    <use href="#pred-cell" x="18" y="72"/><use href="#pred-cell" x="18" y="90"/>
+    <!-- Region 3 (20 cells) -->
+    <use href="#pred-cell" x="72" y="18"/><use href="#pred-cell" x="90" y="18"/><use href="#pred-cell" x="108" y="18"/><use href="#pred-cell" x="126" y="18"/>
+    <use href="#pred-cell" x="72" y="36"/><use href="#pred-cell" x="90" y="36"/><use href="#pred-cell" x="108" y="36"/><use href="#pred-cell" x="126" y="36"/>
+    <use href="#pred-cell" x="72" y="54"/><use href="#pred-cell" x="90" y="54"/><use href="#pred-cell" x="108" y="54"/><use href="#pred-cell" x="126" y="54"/>
+    <use href="#pred-cell" x="72" y="72"/><use href="#pred-cell" x="90" y="72"/><use href="#pred-cell" x="108" y="72"/><use href="#pred-cell" x="126" y="72"/>
+    <use href="#pred-cell" x="72" y="90"/><use href="#pred-cell" x="90" y="90"/><use href="#pred-cell" x="108" y="90"/><use href="#pred-cell" x="126" y="90"/>
+  </g>
+  <text x="216" y="218" font-size="10" font-weight="600" fill="#18181B">PRO = (4/4 + 2/2 + 20/20) / 3 = 1</text>
+  <text x="216" y="242" font-size="10" fill="#3F3F46">TPR = 26/26 = 1</text>
+
+  <!-- Vertical Divider between i) and ii) -->
+  <line x1="380" y1="202" x2="380" y2="254" stroke="#A1A1AA" stroke-width="0.9"/>
+
+  <!-- ii) Half of each region predicted (x=396, y=54) -->
+  <g transform="translate(396, 54)">
+    <use href="#base-grid"/>
+    <!-- Region 1 (2/4 cells: col 2, rows 1..2) -->
+    <use href="#pred-cell" x="36" y="18"/><use href="#pred-cell" x="36" y="36"/>
+    <!-- Region 2 (1/2 cell: col 1, row 4) -->
+    <use href="#pred-cell" x="18" y="72"/>
+    <!-- Region 3 (10/20 cells: rows 1..2 all 4 cols + row 3 cols 4..5) -->
+    <use href="#pred-cell" x="72" y="18"/><use href="#pred-cell" x="90" y="18"/><use href="#pred-cell" x="108" y="18"/><use href="#pred-cell" x="126" y="18"/>
+    <use href="#pred-cell" x="72" y="36"/><use href="#pred-cell" x="90" y="36"/><use href="#pred-cell" x="108" y="36"/><use href="#pred-cell" x="126" y="36"/>
+    <use href="#pred-cell" x="72" y="54"/><use href="#pred-cell" x="90" y="54"/>
+  </g>
+  <text x="390" y="218" font-size="10" font-weight="600" fill="#18181B">PRO = (2/4 + 1/2 + 10/20) / 3 = 0.5</text>
+  <text x="390" y="242" font-size="10" fill="#3F3F46">TPR = 13/26 = 0.5</text>
+
+  <!-- Vertical Divider between ii) and iii) -->
+  <line x1="556" y1="202" x2="556" y2="254" stroke="#A1A1AA" stroke-width="0.9"/>
+
+  <!-- iii) Only 2 small regions predicted (x=572, y=54) -->
+  <g transform="translate(572, 54)">
+    <use href="#base-grid"/>
+    <!-- Region 1 (4/4 cells) -->
+    <use href="#pred-cell" x="18" y="18"/><use href="#pred-cell" x="36" y="18"/>
+    <use href="#pred-cell" x="18" y="36"/><use href="#pred-cell" x="36" y="36"/>
+    <!-- Region 2 (2/2 cells) -->
+    <use href="#pred-cell" x="18" y="72"/><use href="#pred-cell" x="18" y="90"/>
+  </g>
+  <text x="564" y="218" font-size="10" font-weight="600" fill="#18181B">PRO = (4/4 + 2/2 + 0/20) / 3 = 0.67</text>
+  <text x="564" y="242" font-size="10" fill="#3F3F46">TPR = 6/26 = 0.23</text>
+
+  <!-- Vertical Divider between iii) and iv) -->
+  <line x1="732" y1="202" x2="732" y2="254" stroke="#A1A1AA" stroke-width="0.9"/>
+
+  <!-- iv) Only 1 large region predicted (x=748, y=54) -->
+  <g transform="translate(748, 54)">
+    <use href="#base-grid"/>
+    <!-- Region 3 (20/20 cells) -->
+    <use href="#pred-cell" x="72" y="18"/><use href="#pred-cell" x="90" y="18"/><use href="#pred-cell" x="108" y="18"/><use href="#pred-cell" x="126" y="18"/>
+    <use href="#pred-cell" x="72" y="36"/><use href="#pred-cell" x="90" y="36"/><use href="#pred-cell" x="108" y="36"/><use href="#pred-cell" x="126" y="36"/>
+    <use href="#pred-cell" x="72" y="54"/><use href="#pred-cell" x="90" y="54"/><use href="#pred-cell" x="108" y="54"/><use href="#pred-cell" x="126" y="54"/>
+    <use href="#pred-cell" x="72" y="72"/><use href="#pred-cell" x="90" y="72"/><use href="#pred-cell" x="108" y="72"/><use href="#pred-cell" x="126" y="72"/>
+    <use href="#pred-cell" x="72" y="90"/><use href="#pred-cell" x="90" y="90"/><use href="#pred-cell" x="108" y="90"/><use href="#pred-cell" x="126" y="90"/>
+  </g>
+  <text x="740" y="218" font-size="10" font-weight="600" fill="#18181B">PRO = (0/4 + 0/2 + 20/20) / 3 = 0.33</text>
+  <text x="740" y="242" font-size="10" fill="#3F3F46">TPR = (0 + 0 + 20) / 26 = 0.77</text>
+
+  <!-- Summary note at bottom right -->
+  <rect x="216" y="264" width="688" height="28" rx="4" fill="#F4F4F5" stroke="#D4D4D8" stroke-width="0.8"/>
+  <text x="560" y="282" text-anchor="middle" font-size="9.5" fill="#27272A">PRO 對每個獨立異常連通區域賦予相同權重（1/3）；而 TPR（單一門檻下的真陽性率）受大面積缺陷 (20 px) 主導，在案例 iv) 完全漏檢 2 個小缺陷時仍給出 0.77 高分。</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToyMzhhYTUzYi1lMGMwLTRhMWItOGNjNC0yMzM5MDM5MDBjMjAAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaALMlzf/LVeS27blfvbTD8IAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpjZTcxYjU4Ny02M2Y4LTQ2MTEtYWRhZC1lMjVlNzVkMzM2ZGZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoNtYX9HiZo20n3yyI4n39UwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgghlpYhKnISUzprJcnVtbwdnLwWssQ0xtmCoQ2dYcYgzukZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaHcITMNBagQUCSGimZ47epYAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIBO8d/asDAWmzaTBViGGGZQgIbcGQDsa72rXPSOM0lfJZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSE1Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjIzOGFhNTNiLWUwYzAtNGExYi04Y2M0LTIzMzkwMzkwMGMyMC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmIwMjk0NGMyLWE1Y2UtNDg2MC1iMTkzLTFkOGU4YjNiM2U2YnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCGWliEqchJTOmslydW1vB2cvBayxDTG2YKhDZ1hxiDO6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggG0hObJJ7edrv40HzRVGWBOXdM4+S3eAoYMaNbkGXZ7qiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggjmFM+RONbMoabHudCG0HPI8sU0AW/V4WmypAHl7Z87d0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQLF2yVDOrKC+N9jVIz6ZWsBbSBLbItlGVDWcpTu0GO8AGHsoDC3NL+JelN88vf+lAm8CMk1ERKtC/sU0QemmFH4=</c2pa:manifest></metadata></svg>

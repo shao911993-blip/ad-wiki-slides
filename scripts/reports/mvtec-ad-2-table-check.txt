@@ -1,0 +1,18 @@
+Table 1 (Cross-Dataset AU-PRO0.30, 8 rows x 3 cols): checked 24 cells (24 numbers), errors = 0
+Table 2 (Dataset Qualitative Comparison, 10 rows x 7 cols): checked 70 symbol cells, errors = 0
+Table 3 (Acquisition Setting, Defects & Challenges, 8 rows x 3 cols): checked 24 text cells, errors = 0
+Table 4 (Dataset Statistical Overview, 8 rows + Total row): checked 63 cells (143 numbers), errors = 0
+Table 5 (Cameras and Lenses, 8 rows x 2 cols): checked 16 text cells, errors = 0
+Table 6 (Lighting Conditions, 8 rows x 4 cols): checked 32 text/symbol cells, errors = 0
+Table 7 (256x256 AU-PRO0.05) (9 rows x 7 cols): checked 63 cells (126 numbers), errors = 0
+Table 8 (256x256 Pixel Seg F1) (9 rows x 7 cols): checked 63 cells (126 numbers), errors = 0
+Table 9 (256x256 AU-PRO0.30) (9 rows x 7 cols): checked 63 cells (126 numbers), errors = 0
+Table 10 (512x512 AU-PRO0.05) (9 rows x 7 cols): checked 63 cells (126 numbers), errors = 0
+Table 11 (Half Size AU-PRO0.05) (9 rows x 7 cols): checked 63 cells (110 numbers), errors = 0
+Table 12 (256x256 Image Cls F1) (9 rows x 7 cols): checked 63 cells (126 numbers), errors = 0
+Cross-page number verification (datasets/mvtec-ad-2.md, datasets/mvtec-ad.md, comparisons, index.md, index.html vs PDF): checked 38 assertions, errors = 0
+Control character scan across 18 wiki/*.md files: errors = 0
+Python script raw-string check across MVTec AD 2 scripts: errors = 0
+Markdown relative link check across 18 wiki/*.md files: checked 526 links, errors = 0
+================================================================================
+=== TOTAL across all 12 tables (Table 1-12): checked 607 cells (907 numbers), cross-page assertions = 38, control-char errors = 0, raw-string errors = 0, link errors = 0, total errors = 0 ===

@@ -1,0 +1,104 @@
+關卡 ④ 瀏覽器渲染檢查報告（scripts/check_render.py 產生）
+受檢檔案：slides/evolution-of-anomaly-detection/index.html；KaTeX 來源：本機 /home/claude/katex/package/dist
+桌面：1280×720 畫布等比例縮放，檢查內文不壓到標題／頁尾、元素不超出畫布、圖不被壓到最小高度（150 px）；「餘裕」為內文底端到頁尾的距離（畫布座標）。
+手機：寬 ≤ 760 改為直向捲動，檢查元素不超出畫面寬度。全部視窗：圖片、表格拆字、KaTeX、換頁與備註。
+
+== desktop-1366x768  頁面錯誤：無
+  第  1 頁：最小字 15.5 px → PASS
+  第  2 頁：餘裕 104 px，最小字 16 px → PASS
+  第  3 頁：餘裕 61 px，最小字 16 px → PASS
+  第  4 頁：餘裕 84 px，最小字 16 px → PASS
+  第  5 頁：餘裕 14 px，圖高 195 px，最小字 16 px → PASS
+  第  6 頁：餘裕 14 px，圖高 167 px，最小字 16 px → PASS
+  第  7 頁：餘裕 59 px，圖高 167 px，最小字 16 px → PASS
+  第  8 頁：餘裕 14 px，圖高 195 px，最小字 16 px → PASS
+  第  9 頁：餘裕 14 px，圖高 220 px，最小字 16 px → PASS
+  第 10 頁：餘裕 61 px，最小字 15.5 px → PASS
+  第 11 頁：餘裕 104 px，最小字 16 px → PASS
+  第 12 頁：餘裕 14 px，圖高 245 px，最小字 16 px → PASS
+  第 13 頁：餘裕 91 px，最小字 16 px → PASS
+  第 14 頁：餘裕 23 px，最小字 14.5 px → PASS
+  第 15 頁：餘裕 97 px，最小字 16 px → PASS
+  第 16 頁：餘裕 116 px，最小字 14.5 px → PASS
+  換頁、備註、解答按鈕：PASS（14 項）
+
+== desktop-1366x657  頁面錯誤：無
+  第  1 頁：最小字 13.1 px → PASS
+  第  2 頁：餘裕 104 px，最小字 13.5 px → PASS
+  第  3 頁：餘裕 61 px，最小字 13.5 px → PASS
+  第  4 頁：餘裕 84 px，最小字 13.5 px → PASS
+  第  5 頁：餘裕 14 px，圖高 195 px，最小字 13.5 px → PASS
+  第  6 頁：餘裕 14 px，圖高 167 px，最小字 13.5 px → PASS
+  第  7 頁：餘裕 59 px，圖高 167 px，最小字 13.5 px → PASS
+  第  8 頁：餘裕 14 px，圖高 195 px，最小字 13.5 px → PASS
+  第  9 頁：餘裕 14 px，圖高 220 px，最小字 13.5 px → PASS
+  第 10 頁：餘裕 61 px，最小字 13.1 px → PASS
+  第 11 頁：餘裕 104 px，最小字 13.5 px → PASS
+  第 12 頁：餘裕 14 px，圖高 245 px，最小字 13.5 px → PASS
+  第 13 頁：餘裕 91 px，最小字 13.5 px → PASS
+  第 14 頁：餘裕 23 px，最小字 12.3 px → PASS
+  第 15 頁：餘裕 97 px，最小字 13.5 px → PASS
+  第 16 頁：餘裕 116 px，最小字 12.3 px → PASS
+  換頁、備註、解答按鈕：PASS（14 項）
+
+== desktop-1920x1080  頁面錯誤：無
+  第  1 頁：最小字 22.2 px → PASS
+  第  2 頁：餘裕 104 px，最小字 22.9 px → PASS
+  第  3 頁：餘裕 61 px，最小字 22.9 px → PASS
+  第  4 頁：餘裕 84 px，最小字 22.9 px → PASS
+  第  5 頁：餘裕 14 px，圖高 195 px，最小字 22.9 px → PASS
+  第  6 頁：餘裕 14 px，圖高 167 px，最小字 22.9 px → PASS
+  第  7 頁：餘裕 67 px，圖高 168 px，最小字 22.9 px → PASS
+  第  8 頁：餘裕 14 px，圖高 195 px，最小字 22.9 px → PASS
+  第  9 頁：餘裕 14 px，圖高 220 px，最小字 22.9 px → PASS
+  第 10 頁：餘裕 61 px，最小字 22.2 px → PASS
+  第 11 頁：餘裕 104 px，最小字 22.9 px → PASS
+  第 12 頁：餘裕 14 px，圖高 245 px，最小字 22.9 px → PASS
+  第 13 頁：餘裕 91 px，最小字 22.9 px → PASS
+  第 14 頁：餘裕 23 px，最小字 20.8 px → PASS
+  第 15 頁：餘裕 97 px，最小字 22.9 px → PASS
+  第 16 頁：餘裕 116 px，最小字 20.8 px → PASS
+  換頁、備註、解答按鈕：PASS（14 項）
+
+== mobile-390x844  頁面錯誤：無
+  第  1 頁：最小字 16 px → PASS
+  第  2 頁：最小字 16.5 px → PASS
+  第  3 頁：最小字 16.5 px → PASS
+  第  4 頁：最小字 16.5 px → PASS
+  第  5 頁：圖高 0 px，最小字 16.5 px → PASS
+  第  6 頁：圖高 0 px，最小字 16.5 px → PASS
+  第  7 頁：圖高 87 px，最小字 16.5 px → PASS
+  第  8 頁：圖高 0 px，最小字 16.5 px → PASS
+  第  9 頁：圖高 0 px，最小字 16.5 px → PASS
+  第 10 頁：最小字 12 px → PASS
+  第 11 頁：最小字 16.5 px → PASS
+  第 12 頁：圖高 0 px，最小字 16.5 px → PASS
+  第 13 頁：最小字 16.5 px → PASS
+  第 14 頁：最小字 12 px → PASS
+  第 15 頁：最小字 16.5 px → PASS
+  第 16 頁：最小字 15 px → PASS
+  換頁、備註、解答按鈕：PASS（14 項）
+
+== mobile-360x640  頁面錯誤：無
+  第  1 頁：最小字 16 px → PASS
+  第  2 頁：最小字 16.5 px → PASS
+  第  3 頁：最小字 16.5 px → PASS
+  第  4 頁：最小字 16.5 px → PASS
+  第  5 頁：圖高 0 px，最小字 16.5 px → PASS
+  第  6 頁：圖高 0 px，最小字 16.5 px → PASS
+  第  7 頁：圖高 82 px，最小字 16.5 px → PASS
+  第  8 頁：圖高 0 px，最小字 16.5 px → PASS
+  第  9 頁：圖高 0 px，最小字 16.5 px → PASS
+  第 10 頁：最小字 12 px → PASS
+  第 11 頁：最小字 16.5 px → PASS
+  第 12 頁：圖高 0 px，最小字 16.5 px → PASS
+  第 13 頁：最小字 16.5 px → PASS
+  第 14 頁：最小字 12 px → PASS
+  第 15 頁：最小字 16.5 px → PASS
+  第 16 頁：最小字 15 px → PASS
+  換頁、備註、解答按鈕：PASS（14 項）
+
+== 內容與草稿一致性（學習目標、投影片內容、延伸閱讀逐行比對畫面文字；公式比對數量）
+  比對 342 段文字，不一致 0 處 → PASS
+
+OVERALL RESULT: PASSED (0 error(s))

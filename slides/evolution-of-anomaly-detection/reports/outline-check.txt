@@ -1,0 +1,181 @@
+======================================================================
+Gate ① Programmatic Check Report: slides\evolution-of-anomaly-detection\outline.md
+======================================================================
+
+[0] AGENTS.md Character Count & Density Rule Check
+  [PASS] AGENTS.md length = 10123 chars (<= 12,000 limit)
+  [PASS] AGENTS.md §5 includes '投影片密度規則' (1366×768 single-screen rule)
+
+[1] Base Wiki Commit & Cover Declaration Check
+  [PASS] Outline records current wiki commit: df11944 (df11944472bf30fe7e23a34dccba2e15e376f78a)
+  [PASS] Cover note present: '這是選定 7 篇論文的發展脈絡，不代表後面的方法全面取代前面的'
+
+[2] Slide Count, Sequential Numbering, Learning Objectives & Density Sections Check
+  [PASS] Total slide count = 16 (expected 16)
+  [PASS] Slide 01 title matches: '封面＋學習目標'
+  [PASS] Slide 01 has 1-sentence learning objective (59 chars)
+  [PASS] Slide 01 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 02 title matches: '任務設定：只用正常品訓練、影像級與像素級輸出'
+  [PASS] Slide 02 has 1-sentence learning objective (55 chars)
+  [PASS] Slide 02 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 03 title matches: 'MVTec AD 與基本評估'
+  [PASS] Slide 03 has 1-sentence learning objective (62 chars)
+  [PASS] Slide 03 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 04 title matches: '兩條基本路線：重建正常外觀／比對正常特徵'
+  [PASS] Slide 04 has 1-sentence learning objective (47 chars)
+  [PASS] Slide 04 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 05 title matches: 'RIAD'
+  [PASS] Slide 05 has 1-sentence learning objective (86 chars)
+  [PASS] Slide 05 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 06 title matches: 'PatchCore'
+  [PASS] Slide 06 has 1-sentence learning objective (78 chars)
+  [PASS] Slide 06 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 07 title matches: 'DDPM 入門'
+  [PASS] Slide 07 has 1-sentence learning objective (69 chars)
+  [PASS] Slide 07 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 08 title matches: 'DiffusionAD'
+  [PASS] Slide 08 has 1-sentence learning objective (82 chars)
+  [PASS] Slide 08 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 09 title matches: 'LAMBDA'
+  [PASS] Slide 09 has 1-sentence learning objective (67 chars)
+  [PASS] Slide 09 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 10 title matches: '效果與成本'
+  [PASS] Slide 10 has 1-sentence learning objective (99 chars)
+  [PASS] Slide 10 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 11 title matches: 'MVTec AD 2：舊基準沒涵蓋的難題'
+  [PASS] Slide 11 has 1-sentence learning objective (74 chars)
+  [PASS] Slide 11 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 12 title matches: 'PRO vs. TPR'
+  [PASS] Slide 12 has 1-sentence learning objective (76 chars)
+  [PASS] Slide 12 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 13 title matches: 'AU-PRO0.05：0.05 是 FPR 積分上限'
+  [PASS] Slide 13 has 1-sentence learning objective (89 chars)
+  [PASS] Slide 13 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 14 title matches: '新基準結果'
+  [PASS] Slide 14 has 1-sentence learning objective (97 chars)
+  [PASS] Slide 14 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 15 title matches: '方法脈絡＋一題情境判斷題'
+  [PASS] Slide 15 has 1-sentence learning objective (55 chars)
+  [PASS] Slide 15 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+  [PASS] Slide 16 title matches: '參考資料：7 篇各支援哪幾頁'
+  [PASS] Slide 16 has 1-sentence learning objective (59 chars)
+  [PASS] Slide 16 includes '### 投影片可見內容' and '### 查證資料與講稿備註'
+
+[3] Slide-Level Wiki Section List Existence Check (Slides 1–16)
+  [PASS] Slide 01: all 3 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 02: all 5 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 03: all 4 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 04: all 3 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 05: all 7 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 06: all 5 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 07: all 4 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 08: all 5 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 09: all 5 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 10: all 2 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 11: all 3 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 12: all 2 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 13: all 4 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 14: all 2 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 15: all 4 slide-level wiki file & heading path(s) exist
+  [PASS] Slide 16: all 8 slide-level wiki file & heading path(s) exist
+
+[4] Planned Diagram Files Existence Check
+  [PASS] Slide 05 diagram file exists: assets/diagrams/zavrtanik2021-riad-fig1.svg
+  [PASS] Slide 06 diagram file exists: assets/diagrams/roth2022-patchcore-fig2.svg
+  [PASS] Slide 07 diagram file exists: assets/diagrams/ho2020-ddpm-fig2.svg
+  [PASS] Slide 08 diagram file exists: assets/diagrams/zhang2023-diffusionad-fig3.svg
+  [PASS] Slide 09 diagram file exists: assets/diagrams/lee2026-lambda-fig1.svg
+  [PASS] Slide 12 diagram file exists: assets/diagrams/hecklerkram2025-mvtec-ad-2-fig4.svg
+
+[5] Method Slides (5, 6, 8, 9) Standardized 4-Question Check
+  [PASS] Slide 05 (RIAD) contains all 4 required questions: 輸入什麼, 保存或學到什麼, 怎麼產生異常分數, 主要限制
+  [PASS] Slide 06 (PatchCore) contains all 4 required questions: 輸入什麼, 保存或學到什麼, 怎麼產生異常分數, 主要限制
+  [PASS] Slide 08 (DiffusionAD) contains all 4 required questions: 輸入什麼, 保存或學到什麼, 怎麼產生異常分數, 主要限制
+  [PASS] Slide 09 (LAMBDA) contains all 4 required questions: 輸入什麼, 保存或學到什麼, 怎麼產生異常分數, 主要限制
+
+[6] Per-Claim Wiki Source Check, Table Cell Lookup & Claim Classification
+  [INFO] Slide 01 Claim C01-01（數字存在性已查、語意待 AI 審查）：共核對 3 個數字皆存在於所引段落（`wiki/comparisons/embedding-vs-reconstruction.md` `## 5. 演進趨勢與取捨分析（AI 整理）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 02 Claim C02-01（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/concepts/unsupervised-anomaly-detection.md` `## 1. 概念定義與問題設定`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 02 Claim C02-02（數字存在性已查、語意待 AI 審查）：共核對 1 個數字皆存在於所引段落（`wiki/papers/bergmann2019-mvtec-ad.md` `## 2. 一句話總結（TL;DR）與核心貢獻`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 02 Claim C02-03（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/concepts/unsupervised-anomaly-detection.md` `## 1. 概念定義與問題設定`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 02 Claim C02-04（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/papers/zhang2023-diffusionad.md` `### 4.5 線上異常合成策略（Online Anomaly Synthesis Strategy）`；`wiki/papers/lee2026-lambda.md` `### 4.2 異常合成策略（Anomaly Synthesis Strategy，出自論文 Sec. 4.2, p. 4–5, Fig. 1a）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 03 Claim C03-01（數字存在性已查、語意待 AI 審查）：共核對 21 個數字皆存在於所引段落（`wiki/papers/bergmann2019-mvtec-ad.md` `## 4. 資料集規格與評估指標`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 03 Claim C03-02（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/datasets/mvtec-ad.md` `## 4. 官方評估指標定義（出自 bergmann2019-mvtec-ad.pdf Sec. 4.3, p. 6–7）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 03 Claim C03-03（數字存在性已查、語意待 AI 審查）：共核對 3 個數字皆存在於所引段落（`wiki/papers/bergmann2019-mvtec-ad.md` `## 6. 各方法失敗案例與限制（Limitations）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 04 Claim C04-01（數字存在性已查、語意待 AI 審查）：共核對 1 個數字皆存在於所引段落（`wiki/papers/bergmann2019-mvtec-ad.md` `## 6. 各方法失敗案例與限制（Limitations）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 04 Claim C04-02（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/papers/bergmann2019-mvtec-ad.md` `## 6. 各方法失敗案例與限制（Limitations）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 04 Claim C04-03（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/papers/bergmann2019-mvtec-ad.md` `## 6. 各方法失敗案例與限制（Limitations）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 04 Claim C04-04（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/comparisons/embedding-vs-reconstruction.md` `## 2. 初學者版（AI 整理）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 04 Claim C04-05（數字存在性已查、語意待 AI 審查）：共核對 0 個數字皆存在於所引段落（`wiki/papers/zavrtanik2021-riad.md` `## 2. 一句話總結（TL;DR）與核心貢獻`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 05 Claim C05-01（數字存在性已查、語意待 AI 審查）：共核對 15 個數字皆存在於所引段落（`wiki/papers/zavrtanik2021-riad.md` `## 4. 方法架構與核心設計`；`wiki/papers/zavrtanik2021-riad.md` `### 5.1 實驗設定（出自論文 Sec. 4.1–4.3, p. 5–6）`），語意關係留待關卡 ③ AI 審查
+  [PASS] Slide 05 Claim C05-02（已由程式核對儲存格）：[RIAD（Pattern Recognition 2021） | 紋理平均 Image / Pixel ROC AUC (%)] = 95.1 / 93.9; [RIAD（Pattern Recognition 2021） | 物件平均 Image / Pixel ROC AUC (%)] = 89.9 / 94.3; [RIAD（Pattern Recognition 2021） | 全 15 類平均 Image / Pixel ROC AUC / PRO (%)] = 91.7 / 94.2 / -
+  [PASS] Slide 05 Claim C05-03（已由程式核對儲存格）：[3. U-Net Skip Connections 與異常評分函數 | 關鍵比較設定與平均 Image ROC AUC (%)] = 無 Skip Connections RIAD_ns (88.6%) vs. 改用 SSIM 評分 RIAD_SSIM (85.2%) vs. 完整 RIAD (91.7%)
+  [INFO] Slide 05 Claim C05-04（數字存在性已查、語意待 AI 審查）：共核對 7 個數字皆存在於所引段落（`wiki/papers/zavrtanik2021-riad.md` `## 6. 論文限制（Limitations）與延伸筆記`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 06 Claim C06-01（數字存在性已查、語意待 AI 審查）：共核對 11 個數字皆存在於所引段落（`wiki/papers/roth2022-patchcore.md` `## 4. 方法架構與核心設計`），語意關係留待關卡 ③ AI 審查
+  [PASS] Slide 06 Claim C06-02（已由程式核對儲存格）：[PatchCore-25% | Image AUROC ↑ (%)] = 99.1; [PatchCore-25% | Pixel AUROC ↑ (%)] = 98.1; [PatchCore-25% | PRO ↑ (%)] = 93.4; [PatchCore-25% | 誤分類張數 ↓ (共 1,725 張)] = 42
+  [PASS] Slide 06 Claim C06-03（已由程式核對儲存格）：[PatchCore-1% | Image AUROC (%)] = 99.0; [PatchCore-1% | Pixel AUROC (%)] = 98.0; [PatchCore-1% | PRO (%)] = 93.1; [PatchCore-1% | 單張影像平均推論時間 (秒)] = 0.17 s; [PatchCore-10% | Image AUROC (%)] = 99.0; [PatchCore-10% | Pixel AUROC (%)] = 98.1; [PatchCore-10% | PRO (%)] = 93.5; [PatchCore-10% | 單張影像平均推論時間 (秒)] = 0.22 s
+  [INFO] Slide 06 Claim C06-04（數字存在性已查、語意待 AI 審查）：共核對 2 個數字皆存在於所引段落（`wiki/papers/roth2022-patchcore.md` `## 6. 論文限制（Limitations）與延伸筆記`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 07 Claim C07-01（數字存在性已查、語意待 AI 審查）：共核對 6 個數字皆存在於所引段落（`wiki/papers/ho2020-ddpm.md` `## 4. 方法架構與核心設計`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 07 Claim C07-02（數字存在性已查、語意待 AI 審查）：共核對 7 個數字皆存在於所引段落（`wiki/papers/ho2020-ddpm.md` `## 4. 方法架構與核心設計`；`wiki/papers/ho2020-ddpm.md` `## 5. 在異常檢測中怎麼被使用（與關鍵實驗特性）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 07 Claim C07-03（數字存在性已查、語意待 AI 審查）：共核對 14 個數字皆存在於所引段落（`wiki/papers/ho2020-ddpm.md` `## 5. 在異常檢測中怎麼被使用（與關鍵實驗特性）`；`wiki/papers/ho2020-ddpm.md` `## 6. 論文限制（Limitations）與延伸筆記`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 07 Claim C07-04（數字存在性已查、語意待 AI 審查）：共核對 1 個數字皆存在於所引段落（`wiki/papers/ho2020-ddpm.md` `## 5. 在異常檢測中怎麼被使用（與關鍵實驗特性）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 08 Claim C08-01（數字存在性已查、語意待 AI 審查）：共核對 21 個數字皆存在於所引段落（`wiki/papers/zhang2023-diffusionad.md` `## 4. 方法架構與核心設計`；`wiki/papers/zhang2023-diffusionad.md` `### 5.1 實驗設定、資料集與評估指標`），語意關係留待關卡 ③ AI 審查
+  [PASS] Slide 08 Claim C08-02（已由程式核對儲存格）：[DiffusionAD（本篇） | MVTec AD (I / P / O / A)] = 99.7 / 98.7 / 95.7 / 76.1; [DiffusionAD（本篇） | VisA (I / P / O / A)] = 98.8 / 98.9 / 96.0 / 45.8
+  [INFO] Slide 08 Claim C08-03（數字存在性已查、語意待 AI 審查）：共核對 4 個數字皆存在於所引段落（`wiki/papers/zhang2023-diffusionad.md` `## 6. 論文限制（Limitations）與延伸筆記`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 09 Claim C09-01（數字存在性已查、語意待 AI 審查）：共核對 14 個數字皆存在於所引段落（`wiki/papers/lee2026-lambda.md` `## 4. 方法架構與核心設計`），語意關係留待關卡 ③ AI 審查
+  [PASS] Slide 09 Claim C09-02（已由程式核對儲存格）：[LAMBDA | Image AUROC] = 98.1; [LAMBDA | Pixel AUROC] = 98.6; [LAMBDA | Pixel AUPRO] = 94.2
+  [PASS] Slide 09 Claim C09-03（已由程式核對儲存格）：[200 | Pixel AP] = 69.1; [200 | Pixel AUPRO] = 94.9; [250 | Pixel AP] = 68.7; [250 | Pixel AUPRO] = 94.4
+  [PASS] Slide 10 Claim C10-01（已由程式核對儲存格）：[Ours | Pixel AUPRO] = 94.2; [Ours | GPU Mem (Train)] = 9.3 GB; [Ours | FPS (Eval)] = 42.3
+  [PASS] Slide 10 Claim C10-02（已由程式核對儲存格）：[w/o GSM | Pixel AUPRO] = 90.2 (-4.0); [w/o GSM | GPU Mem (Train)] = 9.3 GB (+0.0%); [w/o GSM | FPS (Eval)] = 42.4 (+0.2%)
+  [PASS] Slide 10 Claim C10-03（已由程式核對儲存格）：[w/o MBG | Pixel AUPRO] = 92.5 (-1.7); [w/o MBG | GPU Mem (Train)] = 11.2 GB (+20.4%); [w/o MBG | FPS (Eval)] = 32.7 (-22.7%)
+  [PASS] Slide 10 Claim C10-04（已由程式核對儲存格）：[w/o VAE | Pixel AUPRO] = 95.4 (+1.2); [w/o VAE | GPU Mem (Train)] = 33.8 GB (+263.4%); [w/o VAE | FPS (Eval)] = 28.4 (-32.9%)
+  [INFO] Slide 10 Claim C10-05（數字存在性已查、語意待 AI 審查）：共核對 6 個數字皆存在於所引段落（`wiki/papers/lee2026-lambda.md` `### 5.1 實驗設定、資料集與評估指標（出自論文 Sec. 5.1–5.2, p. 7）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 11 Claim C11-01（數字存在性已查、語意待 AI 審查）：共核對 13 個數字皆存在於所引段落（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 2. 一句話總結（TL;DR）與核心貢獻`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 11 Claim C11-02（數字存在性已查、語意待 AI 審查）：共核對 15 個數字皆存在於所引段落（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 4. 資料集規格、取像設定與評估指標`），語意關係留待關卡 ③ AI 審查
+  [PASS] Slide 11 Claim C11-03（已由程式核對儲存格）：[Total (AI 整理) | 訓練集 (# Train)] = 2528; [Total (AI 整理) | 驗證集 (# Val)] = 302; [Total (AI 整理) | TESTpub (無異常/有異常)] = 1084 (379/705); [Total (AI 整理) | TESTpriv (無異常/有異常)] = 2045 (748/1297); [Total (AI 整理) | TESTpriv,mix (無異常/有異常)] = 2045 (748/1297); [Total (AI 整理) | 測試集總計 total (無異常/有異常)] = 5174 (1875/3299)
+  [INFO] Slide 11 Claim C11-04（數字存在性已查、語意待 AI 審查）：共核對 15 個數字皆存在於所引段落（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 4. 資料集規格、取像設定與評估指標`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 12 Claim C12-01（數字存在性已查、語意待 AI 審查）：共核對 4 個數字皆存在於所引段落（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 4. 資料集規格、取像設定與評估指標`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 12 Claim C12-02（數字存在性已查、語意待 AI 審查）：共核對 23 個數字皆存在於所引段落（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 4. 資料集規格、取像設定與評估指標`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 13 Claim C13-01（數字存在性已查、語意待 AI 審查）：共核對 14 個數字皆存在於所引段落（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 1. 基本資訊`；`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 4. 資料集規格、取像設定與評估指標`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 13 Claim C13-02（數字存在性已查、語意待 AI 審查）：共核對 14 個數字皆存在於所引段落（`wiki/papers/hecklerkram2025-mvtec-ad-2.md` `## 4. 資料集規格、取像設定與評估指標`），語意關係留待關卡 ③ AI 審查
+  [PASS] Slide 13 Claim C13-03（已由程式核對儲存格）：[PatchCore | $256 \times 256$<br>AU-PRO0.05 (%)<br>(TESTpriv / TESTpriv,mix)<br>[Table 7]] = 28.8 / 26.0; [PatchCore | $256 \times 256$<br>像素分割 F1 (%)<br>(TESTpriv / TESTpriv,mix)<br>[Table 8]] = 3.7 / 3.4
+  [PASS] Slide 14 Claim C14-01（已由程式核對儲存格）：[PatchCore | MVTec AD AU-PRO0.30 (%)] = 92.7; [PatchCore | VisA AU-PRO0.30 (%)] = 79.7; [PatchCore | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 53.8
+  [PASS] Slide 14 Claim C14-02（已由程式核對儲存格）：[RD (即 RD4AD) | MVTec AD AU-PRO0.30 (%)] = 93.9; [RD (即 RD4AD) | VisA AU-PRO0.30 (%)] = 89.0; [RD (即 RD4AD) | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 53.0
+  [PASS] Slide 14 Claim C14-03（已由程式核對儲存格）：[RD++ | MVTec AD AU-PRO0.30 (%)] = 95.0; [RD++ | VisA AU-PRO0.30 (%)] = 89.3; [RD++ | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 54.3
+  [PASS] Slide 14 Claim C14-04（已由程式核對儲存格）：[EfficientAD | MVTec AD AU-PRO0.30 (%)] = 93.5; [EfficientAD | VisA AU-PRO0.30 (%)] = 94.0; [EfficientAD | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 58.7
+  [PASS] Slide 14 Claim C14-05（已由程式核對儲存格）：[MSFlow | MVTec AD AU-PRO0.30 (%)] = 91.2; [MSFlow | VisA AU-PRO0.30 (%)] = 88.4; [MSFlow | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 52.7
+  [PASS] Slide 14 Claim C14-06（已由程式核對儲存格）：[SimpleNet | MVTec AD AU-PRO0.30 (%)] = 89.6; [SimpleNet | VisA AU-PRO0.30 (%)] = 68.9; [SimpleNet | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 46.4
+  [PASS] Slide 14 Claim C14-07（已由程式核對儲存格）：[DSR | MVTec AD AU-PRO0.30 (%)] = 90.8; [DSR | VisA AU-PRO0.30 (%)] = 68.1; [DSR | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 49.0
+  [PASS] Slide 14 Claim C14-08（已由程式核對儲存格）：[Mean | MVTec AD AU-PRO0.30 (%)] = 92.4; [Mean | VisA AU-PRO0.30 (%)] = 82.4; [Mean | MVTec AD 2 (ours, TESTpriv) AU-PRO0.30 (%)] = 52.6
+  [PASS] Slide 15 Claim C15-01（已由程式核對儲存格）：[Image AUROC — PatchCore-25% | 16 Shots (6.6%)] = 95.5 ± 0.6; [Pixel AUROC — PatchCore-25% | 16 Shots (6.6%)] = 96.8 ± 0.3
+  [PASS] Slide 15 Claim C15-02（已由程式核對儲存格）：[DiffusionAD | GPU Mem (Train)] = 48.4 GB; [DiffusionAD | GPU Mem (Eval)] = 12.4 GB; [DiffusionAD | FPS (Eval)] = 10.9; [LAMBDA | GPU Mem (Train)] = 9.3 GB; [LAMBDA | GPU Mem (Eval)] = 5.8 GB; [LAMBDA | FPS (Eval)] = 42.3
+  [INFO] Slide 15 Claim C15-03（數字存在性已查、語意待 AI 審查）：共核對 1 個數字皆存在於所引段落（`wiki/comparisons/embedding-vs-reconstruction.md` `## 5. 演進趨勢與取捨分析（AI 整理）`；`wiki/papers/lee2026-lambda.md` `### 5.1 實驗設定、資料集與評估指標（出自論文 Sec. 5.1–5.2, p. 7）`），語意關係留待關卡 ③ AI 審查
+  [INFO] Slide 16 Claim C16-01（數字存在性已查、語意待 AI 審查）：共核對 3 個數字皆存在於所引段落（`wiki/index.md` `## 1. 單篇論文解析（papers/）`），語意關係留待關卡 ③ AI 審查
+
+[7] 7-Paper Teaching Claim Coverage Check (Slides 2–15)
+  [PASS] Paper 'bergmann2019-mvtec-ad' supports 9 teaching claim(s) on Slide(s) [2, 3, 4]: C02-01, C02-02, C02-03, C03-01, C03-02, C03-03, C04-01, C04-02, C04-03
+  [PASS] Paper 'ho2020-ddpm' supports 3 teaching claim(s) on Slide(s) [7]: C07-01, C07-02, C07-03
+  [PASS] Paper 'zavrtanik2021-riad' supports 5 teaching claim(s) on Slide(s) [4, 5]: C04-05, C05-01, C05-02, C05-03, C05-04
+  [PASS] Paper 'roth2022-patchcore' supports 5 teaching claim(s) on Slide(s) [6, 15]: C06-01, C06-02, C06-03, C06-04, C15-01
+  [PASS] Paper 'zhang2023-diffusionad' supports 4 teaching claim(s) on Slide(s) [2, 8]: C02-04, C08-01, C08-02, C08-03
+  [PASS] Paper 'lee2026-lambda' supports 10 teaching claim(s) on Slide(s) [2, 9, 10, 15]: C02-04, C09-01, C09-02, C09-03, C10-01, C10-02, C10-03, C10-04, C10-05, C15-02
+  [PASS] Paper 'hecklerkram2025-mvtec-ad-2' supports 17 teaching claim(s) on Slide(s) [11, 12, 13, 14]: C11-01, C11-02, C11-03, C11-04, C12-01, C12-02, C13-01, C13-02, C13-03, C14-01, C14-02, C14-03, C14-04, C14-05, C14-06, C14-07, C14-08
+
+[8] Slide 10, 14 & 15 Specific Boundary & Framing Check
+  [PASS] Slide 10 explicitly notes '論文所列差值' and marks missing test conditions as '未記載'
+  [PASS] Slide 14 explicitly states 7-method average boundary and restricts conclusions to the 7 listed methods
+  [PASS] Slide 15 scenario question and C15-03 follow strict candidate-testing & no-hardware-extrapolation framing
+
+[9] Layout Template Check (slides/_templates/)
+  [PASS] slides/_templates/ contains only 'template-2-top-figure.html' (template-1 and template-3 removed)
+  [PASS] template-2-top-figure.html does NOT use overflow: hidden
+  [PASS] template-2-top-figure.html orders the 4 question cards strictly as 1 -> 2 -> 3 -> 4
+  [PASS] template-2-top-figure.html contains draft notice and cites Table 5 (0.17 s for PatchCore-1%) without PatchCore-25% time
+
+======================================================================
+主張分類統計：已由程式核對儲存格 23 筆｜待 AI 審查（數字存在性已查、語意待 AI 審查） 34 筆｜尚未檢查 0 筆（總計 57 筆）
+  - 已由程式核對儲存格（23 筆）：C05-02, C05-03, C06-02, C06-03, C08-02, C09-02, C09-03, C10-01, C10-02, C10-03, C10-04, C11-03, C13-03, C14-01, C14-02, C14-03, C14-04, C14-05, C14-06, C14-07, C14-08, C15-01, C15-02
+  - 數字存在性已查、語意待 AI 審查（34 筆）：C01-01, C02-01, C02-02, C02-03, C02-04, C03-01, C03-02, C03-03, C04-01, C04-02, C04-03, C04-04, C04-05, C05-01, C05-04, C06-01, C06-04, C07-01, C07-02, C07-03, C07-04, C08-01, C08-03, C09-01, C10-05, C11-01, C11-02, C11-04, C12-01, C12-02, C13-01, C13-02, C15-03, C16-01
+  - 尚未檢查（0 筆）：無
+OVERALL RESULT: PASSED (0 errors)
+======================================================================

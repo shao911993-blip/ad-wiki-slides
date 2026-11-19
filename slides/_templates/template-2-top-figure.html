@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>簡報版面範本（上圖下四問卡）｜第 6 頁：PatchCore</title>
+  <link rel="stylesheet" href="../../assets/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="../../assets/math-fit.js"></script>
+  <style>
+    :root {
+      --tpl-bg: #f4f6f7;
+      --tpl-surface: #ffffff;
+      --tpl-panel: #eaeeef;
+      --tpl-border: #cfd6d9;
+      --tpl-ink: #1f262a;
+      --tpl-muted: #546066;
+      --tpl-accent: #2e4b59;
+      --tpl-tag-bg: #dfe6e9;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      background-color: var(--tpl-bg);
+      color: var(--tpl-ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.45;
+    }
+    .template-bar {
+      background: var(--tpl-panel);
+      border-bottom: 1px solid var(--tpl-border);
+      padding: 0.3rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+    }
+    .draft-notice {
+      background: #dde3e6;
+      color: #202a2e;
+      border: 1px solid #b5c0c5;
+      padding: 0.12rem 0.55rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .slide-shell {
+      max-width: 1280px;
+      margin: 0.5rem auto;
+      padding: 0 1rem;
+    }
+    .slide-frame {
+      background: var(--tpl-surface);
+      border: 1px solid var(--tpl-border);
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+    }
+    .slide-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      border-bottom: 1px solid var(--tpl-border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+    .slide-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--tpl-muted);
+    }
+    .slide-badge {
+      background: var(--tpl-tag-bg);
+      color: var(--tpl-ink);
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .slide-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--tpl-ink);
+    }
+    .learning-goal {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--tpl-muted);
+      background: var(--tpl-bg);
+      border-left: 3px solid var(--tpl-accent);
+      padding: 0.25rem 0.65rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .hero-figure {
+      background: var(--tpl-bg);
+      border: 1px solid var(--tpl-border);
+      border-radius: 6px;
+      padding: 0.45rem 0.75rem;
+      margin-bottom: 0.65rem;
+      text-align: center;
+    }
+    .hero-figure img {
+      width: 100%;
+      max-width: 720px;
+      max-height: 195px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--tpl-border);
+      border-radius: 4px;
+      padding: 0.2rem;
+    }
+    .figure-caption {
+      font-size: 0.75rem;
+      color: var(--tpl-muted);
+      margin-top: 0.25rem;
+    }
+    .cards-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.55rem;
+    }
+    .q-card {
+      background: var(--tpl-bg);
+      border: 1px solid var(--tpl-border);
+      border-top: 3px solid var(--tpl-accent);
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
+    }
+    .q-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--tpl-accent);
+      margin: 0 0 0.2rem 0;
+    }
+    .q-body {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--tpl-ink);
+    }
+    .formula-bar {
+      background: var(--tpl-bg);
+      border: 1px solid var(--tpl-border);
+      border-radius: 6px;
+      padding: 0.3rem 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .formula-label {
+      color: var(--tpl-muted);
+      font-size: 0.78rem;
+    }
+    .slide-footer {
+      margin-top: 0.55rem;
+      padding-top: 0.45rem;
+      border-top: 1px solid var(--tpl-border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.76rem;
+      color: var(--tpl-muted);
+    }
+    . slide-footer a,
+    .further-reading a {
+      color: var(--tpl-accent);
+      text-decoration: underline;
+    }
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .nav-btn {
+      background: var(--tpl-panel);
+      border: 1px solid var(--tpl-border);
+      color: var(--tpl-ink);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.76rem;
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      .cards-2x2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="template-bar" role="region" aria-label="範本資訊列">
+    <div>
+      <span class="draft-notice">示範內容，尚未經正式草稿審查</span>
+      <span style="margin-left: 0.5rem; color: var(--tpl-muted);">版面範本：上標題下大圖＋四問雙欄網格式（1366×768 單畫面密度規範）</span>
+    </div>
+    <div>
+      <span>來源：<code>roth2022-patchcore.pdf</code>（Sec. 3–5, Table 5）</span>
+    </div>
+  </div>
+
+  <main class="slide-shell">
+    <article class="slide-frame" id="slide-6">
+      <header class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-badge">第 6 / 16 頁</span>
+          <span>方法演進｜預訓練特徵記憶庫路線：Roth et al. (2022) PatchCore</span>
+        </div>
+        <h1 class="slide-title">PatchCore：局部鄰域特徵記憶庫與貪婪核心集下採樣</h1>
+        <p class="learning-goal">
+          <strong>學習目標：</strong>理解 PatchCore 如何在不訓練目標網路權重的前提下，利用預訓練中階局部特徵與貪婪核心集下採樣達成高精準度與快速推論。
+        </p>
+      </header>
+
+      <!-- 上方核心架構圖（1 張圖） -->
+      <section class="hero-figure" aria-label="方法架構圖">
+        <img src="../../assets/diagrams/roth2022-patchcore-fig2.svg" alt="PatchCore 演算法流程示意圖（依論文 Fig. 2 重繪）" />
+        <div class="figure-caption">
+          <strong>示意圖，依論文 Fig. 2 重繪</strong>（出自 <code>roth2022-patchcore.pdf</code> p. 4 Fig. 2）：擷取正常樣本中階局部鄰域特徵建立記憶庫 \(\mathcal{M}\)，經 Greedy Coreset 壓縮為 \(\mathcal{M}_C\) 後以最近鄰距離推論異常。
+        </div>
+      </section>
+
+      <!-- 中間 2x2 四問卡片網格（依 1、2、3、4 順序，總正文 115 字，3 個關鍵數字：1%、99.0%、0.17 s） -->
+      <section class="cards-2x2" aria-label="方法四問解析">
+        <div class="q-card">
+          <h2 class="q-title">1. 輸入什麼？</h2>
+          <p class="q-body">
+            無資料擴增之單張影像（縮放並中心裁切），送入固定的 ImageNet 預訓練骨幹網路。
+          </p>
+        </div>
+
+        <div class="q-card">
+          <h2 class="q-title">2. 保存或學到什麼？</h2>
+          <p class="q-body">
+            不需訓練網路權重；擷取中階局部鄰域聚合特徵建立記憶庫 \(\mathcal{M}\)，再以貪婪核心集（Greedy Coreset）壓縮至 <strong>1%</strong> 代表性特徵 \(\mathcal{M}_C\)。
+          </p>
+        </div>
+
+        <div class="q-card">
+          <h2 class="q-title">3. 怎麼產生異常分數？</h2>
+          <p class="q-body">
+            計算測試 Patch 到 \(\mathcal{M}_C\) 的最近鄰距離並以鄰域密度重加權（<code>PatchCore-1%</code> 於 MVTec AD Table 5 達 <strong>99.0%</strong> 影像 AUROC、單張推論 <strong>0.17 s</strong>）。
+          </p>
+        </div>
+
+        <div class="q-card">
+          <h2 class="q-title">4. 主要限制？</h2>
+          <p class="q-body">
+            受限於 ImageNet 預訓練特徵對目標領域的可遷移性，高正常變異易誤報，且中心裁切會漏檢邊界瑕疵。
+          </p>
+        </div>
+      </section>
+
+      <!-- 單一核心公式列（最多 1 條公式） -->
+      <section class="formula-bar" aria-label="貪婪核心集目標公式">
+        <span class="formula-label"><strong>貪婪核心集目標（Eq. 5，p. 4）：</strong>最小化記憶庫任一點到核心集最近鄰的最大距離</span>
+        <div>
+          \(\displaystyle \mathcal{M}_C^* = \arg\min_{\mathcal{M}_C \subset \mathcal{M}} \max_{m \in \mathcal{M}} \min_{n \in \mathcal{M}_C} \|m - n\|_2\)
+        </div>
+      </section>
+
+      <footer class="slide-footer">
+        <div class="further-reading">
+          <strong>延伸閱讀：</strong>
+          <a href="../../wiki/papers/roth2022-patchcore.md#4-方法架構與核心設計">Roth et al. (2022) — PatchCore §4–§6</a> ｜
+          <a href="../../wiki/concepts/memory-bank.md#3-核心原理與數學公式出自-roth2022-patchcorepdf-sec-3-p-35">局部特徵記憶庫與核心集下採樣 §3</a>
+        </div>
+        <div class="nav-controls">
+          <button type="button" class="nav-btn" aria-label="上一頁（範本展示）" disabled>← 上一頁</button>
+          <span>第 6 / 16 頁</span>
+          <button type="button" class="nav-btn" aria-label="下一頁（範本展示）" disabled>下一頁 →</button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.renderMathInElement) {
+        window.renderMathInElement(document.body, {
+          delimiters: [
+            { left: "\\[", right: "\\]", display: true },
+            { left: "$$", right: "$$", display: true },
+            { left: "\\(", right: "\\)", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+      if (window.fitAllMath) {
+        setTimeout(window.fitAllMath, 80);
+      }
+    });
+  </script>
+</body>
+</html>

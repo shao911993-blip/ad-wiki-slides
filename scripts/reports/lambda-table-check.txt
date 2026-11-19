@@ -1,0 +1,16 @@
+Table 1 (VisA Summary & Efficiency, 6 rows): checked 72 cells (78 numbers), errors = 0
+Table 2 (BMAD Summary, 5 rows): checked 30 cells (30 numbers), errors = 0
+Table 3 (Wilcoxon Signed-Rank Test, 4 rows): checked 8 cells (8 numbers), errors = 0
+Table 5 (Memory Bank Size Summary, 5 rows): checked 30 cells (30 numbers), errors = 0
+Table 6 (Loss Weighting Factor Summary, 7 rows): checked 42 cells (42 numbers), errors = 0
+Table A.1 (VisA 12 Categories + Avg) (13 rows x 5 cols): checked 65 cells (325 numbers), errors = 0
+Table A.2 (MVTec AD 15 Categories + Avgs) (18 rows x 5 cols): checked 90 cells (450 numbers), errors = 0
+Table A.3 (BMAD 3 Categories + Avg) (4 rows x 5 cols): checked 20 cells (100 numbers), errors = 0
+Table A.4 (VisA Ablation 12 Categories + Avg) (13 rows x 4 cols): checked 52 cells (260 numbers), errors = 0
+Table A.5 (MVTec n_m Ablation 15 Categories + Avgs) (18 rows x 5 cols): checked 90 cells (450 numbers), errors = 0
+Table A.6 (MVTec lambda Ablation 15 Categories + Avgs) (18 rows x 7 cols): checked 126 cells (630 numbers), errors = 0
+Table 4 (Component Ablation Summary, 4 rows, cross-checked with Table A.4 Avg & Page 10): checked 40 cells (70 numbers), errors = 0
+Cross-page number verification (comparisons, datasets, concepts, index.md, index.html vs PDF): checked 15 assertions, errors = 0
+Control character scan across 16 wiki/*.md files: errors = 0
+================================================================================
+=== TOTAL across all 12 tables (Table 1-6 & Table A.1-A.6): checked 665 cells (2473 numbers), cross-page assertions = 15, control-char errors = 0, total errors = 0 ===

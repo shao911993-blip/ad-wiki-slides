@@ -1,0 +1,38 @@
+{
+  "_說明": "版面設定：只決定每頁怎麼排，不放任何知識內容。文字一律由 build_deck.py 從 drafts/NN.md 取出；大數字版面的拆段由程式驗證拼回去後與草稿原句相同（只容許拿掉拆開處的標點）。",
+  "deck_title": "從重建到擴散：工業異常檢測的演進",
+  "cover_kicker": "視覺異常檢測入門 · 7 篇論文導讀",
+  "stations": [
+    {"no": 1, "name": "任務與基準", "pages": [2, 3]},
+    {"no": 2, "name": "方法演進", "pages": [4, 5, 6, 7, 8, 9, 10]},
+    {"no": 3, "name": "評測與選型", "pages": [11, 12, 13, 14, 15]}
+  ],
+  "appendix_label": "參考資料",
+  "mascot": "../../assets/mascot-magnifier.png",
+  "mascot_pages": [2, 4, 11],
+  "pages": {
+    "1": {"layout": "cover"},
+    "2": {"layout": "cards", "rows": [1, 2]},
+    "3": {"layout": "bignums", "bullet": 0, "label": "MVTec AD",
+          "tiles": [
+            {"pre": "", "n": "15", "unit": "類工業產品"},
+            {"pre": "訓練只有", "n": "3,629", "unit": "張正常品（可再分出驗證集）"},
+            {"pre": "測試", "n": "1,725", "unit": "張混有正常與瑕疵品"}
+          ],
+          "rest": "defs"},
+    "4": {"layout": "versus", "split": "；", "row_labels": ["怎麼做", "難題"], "icons": ["🖌️", "🔬"]},
+    "5": {"layout": "method"},
+    "6": {"layout": "method"},
+    "7": {"layout": "figure-side"},
+    "8": {"layout": "method"},
+    "9": {"layout": "method"},
+    "10": {"layout": "table-side"},
+    "11": {"layout": "stat-list"},
+    "12": {"layout": "figure-row"},
+    "13": {"layout": "definition"},
+    "14": {"layout": "table-below"},
+    "15": {"layout": "timeline", "chain_sep": "→", "reveal": 2},
+    "16": {"layout": "refs"}
+  },
+  "layout_labels": ["第 1 站", "第 2 站", "第 3 站", "任務與基準", "方法演進", "評測與選型", "參考資料", "這頁要學會", "怎麼做", "難題", "視覺異常檢測入門 · 7 篇論文導讀", "vs", "顯示解答", "1", "2", "3", "4"]
+}

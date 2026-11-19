@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>風格樣張（3 頁）｜從重建到擴散：工業異常檢測的演進</title>
+<style>
+  /* ===== 主題變數：A 活潑（預設）／B 學術 ===== */
+  :root {
+    --bg: #efe9df; --canvas: #fbf8f2; --ink: #2a2622; --muted: #6b635b; --line: #e3dbcf;
+    --accent: #c8553d; --accent-soft: #f6e3dc;
+    --st1: #2f7d74; --st1-soft: #dcefeb;   /* 第 1 站 任務與基準 */
+    --st2: #c8553d; --st2-soft: #f6e3dc;   /* 第 2 站 方法演進 */
+    --st3: #4b5aa8; --st3-soft: #e2e5f5;   /* 第 3 站 評測與選型 */
+    --radius: 18px; --title-font: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    --nav-h: 48px;
+  }
+  body.theme-b {
+    --bg: #e9ecef; --canvas: #ffffff; --ink: #1c2329; --muted: #5a6670; --line: #dde2e6;
+    --accent: #1f4e79; --accent-soft: #e4ecf4;
+    --st1: #1f4e79; --st1-soft: #e4ecf4; --st2: #1f4e79; --st2-soft: #e4ecf4; --st3: #1f4e79; --st3-soft: #e4ecf4;
+    --radius: 4px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+  a { color: inherit; text-underline-offset: 3px; }
+
+  /* ===== 16:9 畫布，整張等比例縮放 ===== */
+  .stage { position: fixed; inset: 0 0 var(--nav-h) 0; display: grid; place-items: center; }
+  .slide { width: 1280px; height: 720px; background: var(--canvas); border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(40,30,20,.12); position: absolute; left: 50%; top: 50%;
+    transform-origin: center center; padding: 44px 64px 34px; display: none; flex-direction: column; overflow: hidden; }
+  .slide.active { display: flex; }
+
+  .topbar { display: flex; align-items: center; justify-content: space-between; font-size: 16px; color: var(--muted); }
+  .station { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px;
+    padding: 6px 14px; border-radius: 999px; }
+  .station b { font-weight: 800; }
+  .s1 .station { background: var(--st1-soft); color: var(--st1); }
+  .s2 .station { background: var(--st2-soft); color: var(--st2); }
+  .s3 .station { background: var(--st3-soft); color: var(--st3); }
+  .progress { display: flex; gap: 6px; }
+  .progress i { width: 26px; height: 6px; border-radius: 3px; background: var(--line); display: block; }
+  .progress i.on { background: currentColor; }
+  .s1 .progress { color: var(--st1); } .s2 .progress { color: var(--st2); } .s3 .progress { color: var(--st3); }
+
+  h1.title { font-family: var(--title-font); font-size: 46px; line-height: 1.2; margin: 22px 0 8px; letter-spacing: .5px; }
+  .goal { font-size: 17px; color: var(--muted); margin: 0 0 26px; max-width: 1050px; line-height: 1.55; }
+  .goal::before { content: "這頁要學會　"; font-weight: 700; color: var(--ink); }
+  .content { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+  .foot { display: flex; justify-content: space-between; align-items: flex-end; font-size: 14px; color: var(--muted);
+    border-top: 1px solid var(--line); padding-top: 12px; }
+  .foot .reading a { margin-right: 14px; }
+  .pageno { font-variant-numeric: tabular-nums; font-weight: 700; }
+  .term { font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .s1 .term { color: var(--st1); } .s3 .term { color: var(--st3); }
+
+  /* ===== 封面 ===== */
+  .cover { padding: 0; flex-direction: row !important; }
+  .cover .left { flex: 1.25; padding: 64px 40px 48px 72px; display: flex; flex-direction: column; }
+  .cover .right { flex: 0.75; background: var(--accent-soft); display: grid; place-items: center; position: relative; }
+  .cover .right img { width: 330px; height: auto; }
+  .cover .kicker { font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 2px; }
+  .cover h1.title { font-size: 60px; margin: 18px 0 22px; }
+  .cover .claim { font-size: 20px; line-height: 1.6; background: var(--canvas); border-left: 6px solid var(--accent);
+    padding: 14px 18px; border-radius: 0 10px 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,.05); margin-bottom: 28px; }
+  .route { display: flex; flex-direction: column; gap: 14px; }
+  .route .stop { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: center; font-size: 19px; line-height: 1.5; }
+  .route .num { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 20px; }
+  .route .stop:nth-child(1) .num { background: var(--st1); } .route .stop:nth-child(2) .num { background: var(--st2); } .route .stop:nth-child(3) .num { background: var(--st3); }
+  .cover .foot { margin-top: auto; }
+  body.theme-b .cover .right { background: #f1f4f7; }
+  body.theme-b .cover .right img { display: none; }
+  body.theme-b .cover .right::after { content: "7 篇論文 · 16 頁"; font-size: 26px; font-weight: 700; color: var(--accent); }
+
+  /* ===== 大數字 ===== */
+  .dsname { font-size: 22px; margin-bottom: 10px; }
+  .bignums { display: grid; grid-template-columns: 0.8fr 1.1fr 1.1fr; gap: 22px; margin-bottom: 26px; }
+  .bignum { background: var(--st1-soft); border-radius: var(--radius); padding: 22px 26px; }
+  .bignum .pre { font-size: 18px; color: var(--muted); font-weight: 700; }
+  .bignum .n { font-size: 72px; font-weight: 800; line-height: 1.05; color: var(--st1); font-variant-numeric: tabular-nums; }
+  .bignum .unit { font-size: 19px; line-height: 1.5; }
+  .bignum.dataset { background: var(--st1); color: #fff; display: flex; flex-direction: column; justify-content: center; }
+  .bignum.dataset .n { color: #fff; font-size: 40px; }
+  .defs { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .def { border: 2px solid var(--line); border-radius: var(--radius); padding: 18px 22px; font-size: 19px; line-height: 1.6; }
+  .def .k { display: block; font-size: 26px; font-weight: 800; color: var(--st1); margin-bottom: 4px; }
+
+  /* ===== 左右對照 ===== */
+  .versus { display: grid; grid-template-columns: 1fr 64px 1fr; align-items: stretch; }
+  .side { border-radius: var(--radius); padding: 26px 30px; display: flex; flex-direction: column; gap: 16px; }
+  .side.a { background: var(--st2-soft); }
+  .side.b { background: #eceae4; }
+  body.theme-b .side.b { background: #f1f4f7; }
+  .side h2 { margin: 0; font-size: 28px; line-height: 1.35; }
+  .side h2 .icon { font-size: 34px; margin-right: 8px; }
+  body.theme-b .side h2 .icon { display: none; }
+  .side h2 small { display: block; font-size: 16px; color: var(--muted); font-weight: 600; margin-top: 4px; }
+  .row { background: var(--canvas); border-radius: calc(var(--radius) - 6px); padding: 14px 18px; font-size: 20px; line-height: 1.55; }
+  .row .lab { display: block; font-size: 14px; font-weight: 800; letter-spacing: 1px; color: var(--muted); margin-bottom: 2px; }
+  .row.warn .lab { color: var(--accent); }
+  .vs { display: grid; place-items: center; font-size: 22px; font-weight: 800; color: var(--muted); }
+
+  .mascot-peek { position: absolute; right: 26px; top: 26px; width: 84px; }
+  .s2 .progress { margin-right: 96px; }
+  body.theme-b .mascot-peek { display: none; }
+
+  /* ===== 換頁列 ===== */
+  .nav { position: fixed; left: 0; right: 0; bottom: 0; height: var(--nav-h); display: flex; justify-content: center; align-items: center; gap: 10px;
+    background: rgba(255,255,255,.7); backdrop-filter: blur(6px); border-top: 1px solid var(--line); font-size: 14px; }
+  .nav button { font: inherit; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+  .theme-switch { position: fixed; top: 10px; right: 12px; z-index: 5; font: 14px sans-serif; padding: 6px 12px; border-radius: 8px; border: 1px solid #999; background: #fff; cursor: pointer; }
+
+  /* ===== 手機：不縮放，改直向排列 ===== */
+  @media (max-width: 760px) {
+    html, body { overflow: auto; height: auto; }
+    .stage { position: static; display: block; padding: 10px 10px calc(var(--nav-h) + 10px); }
+    .slide { position: static; width: auto; height: auto; transform: none !important; padding: 22px 18px; }
+    .cover { flex-direction: column !important; }
+    .cover .left { padding: 24px 18px; } .cover .right { padding: 20px; } .cover .right img { width: 160px; }
+    h1.title, .cover h1.title { font-size: 28px; }
+    .bignums, .defs, .versus { grid-template-columns: 1fr; gap: 12px; }
+    .vs { padding: 4px 0; } .bignum .n { font-size: 48px; }
+    .mascot-peek { display: none; }
+  }
+</style>
+</head>
+<body>
+<button class="theme-switch" id="theme-btn" type="button">切換：B 學術風</button>
+
+<div class="stage">
+
+  <!-- ===== 第 1 頁：封面 ===== -->
+  <section class="slide cover" data-n="1">
+    <div class="left">
+      <div class="kicker">視覺異常檢測入門 · 7 篇論文導讀</div>
+      <h1 class="title">從重建到擴散：<br>工業異常檢測的演進</h1>
+      <div class="claim"><strong>這是選定 7 篇論文的發展脈絡（AI 整理），不代表後面的方法全面取代前面的。</strong></div>
+      <div class="route">
+        <div class="stop"><span class="num">1</span><span><strong>任務與基準</strong>：認識只用正常品訓練的設定，以及整張圖與逐像素兩種評估。</span></div>
+        <div class="stop"><span class="num">2</span><span><strong>方法演進</strong>：「重建外觀」與「比對特徵」兩條路線，如何走到擴散模型。</span></div>
+        <div class="stop"><span class="num">3</span><span><strong>評測與選型</strong>：看懂更嚴格的定位指標，以及測試條件的限制。</span></div>
+      </div>
+      <div class="foot"><span class="reading">延伸閱讀：<a href="../../../wiki/index.md#1-單篇論文解析papers">Wiki 總目錄</a><a href="../../../wiki/comparisons/embedding-vs-reconstruction.md#1-比較維度與脈絡概述">預訓練特徵嵌入 vs. 重建式異常檢測流派對比</a></span><span class="pageno">1 / 16</span></div>
+    </div>
+    <div class="right"><img src="../../../assets/mascot-magnifier.png" alt="拿放大鏡的吉祥物" /></div>
+  </section>
+
+  <!-- ===== 第 3 頁：大數字 ===== -->
+  <section class="slide s1" data-n="3">
+    <div class="topbar"><span class="station"><b>第 1 站</b>任務與基準</span><span class="progress"><i class="on"></i><i></i><i></i></span></div>
+    <h1 class="title">MVTec AD 與基本評估</h1>
+    <p class="goal">認識工業異常檢測標準基準 MVTec AD 的資料分工，並理解影像級與像素級（<span class="term">AUROC</span> 與 <span class="term">PRO</span>）基本評估方式。</p>
+    <div class="content">
+      <div class="dsname"><span class="term">MVTec AD</span></div>
+      <div class="bignums">
+        <div class="bignum"><div class="pre">&nbsp;</div><div class="n">15</div><div class="unit">類工業產品</div></div>
+        <div class="bignum"><div class="pre">訓練只有</div><div class="n">3,629</div><div class="unit">張正常品（可再分出驗證集）</div></div>
+        <div class="bignum"><div class="pre">測試</div><div class="n">1,725</div><div class="unit">張混有正常與瑕疵品</div></div>
+      </div>
+      <div class="defs">
+        <div class="def"><span class="k">AUROC</span>看模型能不能把瑕疵排在正常品前面；可用在整張圖，也可用在每個像素。</div>
+        <div class="def"><span class="k">PRO</span>每個瑕疵區域被標中的比例，再取平均；看定位準不準。</div>
+      </div>
+    </div>
+    <div class="foot"><span class="reading">延伸閱讀：<a href="../../../wiki/papers/bergmann2019-mvtec-ad.md#4-資料集規格與評估指標">Bergmann et al. (2019) — MVTec AD §4</a><a href="../../../wiki/datasets/mvtec-ad.md">MVTec AD 資料集與評估指標 §3–§4</a></span><span class="pageno">3 / 16</span></div>
+  </section>
+
+  <!-- ===== 第 4 頁：左右對照 ===== -->
+  <section class="slide s2" data-n="4">
+    <div class="topbar"><span class="station"><b>第 2 站</b>方法演進</span><span class="progress"><i class="on"></i><i class="on"></i><i></i></span></div>
+    <h1 class="title">兩條基本路線：重建正常外觀／比對正常特徵</h1>
+    <p class="goal">掌握視覺異常檢測的兩條基本技術路線——「重建正常外觀」與「比對正常特徵」的核心直覺與各自難題。</p>
+    <div class="content">
+      <div class="versus">
+        <div class="side a">
+          <h2><span class="icon">🖌️</span>重建正常外觀<small>（臨摹畫家派，AI 整理）</small></h2>
+          <div class="row"><span class="lab">怎麼做</span>只教網路重畫正常品，原圖和重建圖的差異就是異常線索</div>
+          <div class="row warn"><span class="lab">難題</span>壓太扁會畫糊細節，記太細又會連瑕疵一起照抄。</div>
+        </div>
+        <div class="vs">vs</div>
+        <div class="side b">
+          <h2><span class="icon">🔬</span>比對正常特徵<small>（顯微鏡相簿派，AI 整理）</small></h2>
+          <div class="row"><span class="lab">怎麼做</span>用預訓練網路取出正常區塊的特徵存檔，測試時比距離</div>
+          <div class="row warn"><span class="lab">難題</span>早期做法沒有位置資訊，定位較粗糙。</div>
+        </div>
+      </div>
+    </div>
+    <img class="mascot-peek" src="../../../assets/mascot-magnifier.png" alt="" aria-hidden="true" />
+    <div class="foot"><span class="reading">延伸閱讀：<a href="../../../wiki/comparisons/embedding-vs-reconstruction.md#1-比較維度與脈絡概述">流派對比 §1–§2</a><a href="../../../wiki/papers/bergmann2019-mvtec-ad.md#6-各方法失敗案例與限制limitations">MVTec AD 各方法失敗案例與限制 §6</a></span><span class="pageno">4 / 16</span></div>
+  </section>
+
+</div>
+
+<nav class="nav"><button id="prev" type="button">← 上一頁</button><span id="ind">1 / 3</span><button id="next" type="button">下一頁 →</button><span style="color:#888">（樣張：方向鍵也可換頁）</span></nav>
+
+<script>
+  var slides = [].slice.call(document.querySelectorAll('.slide')), cur = 0;
+  function fit() {
+    var s = slides[cur]; if (window.innerWidth <= 760) { s.style.transform = 'none'; return; }
+    var h = window.innerHeight - 48, w = window.innerWidth, k = Math.min(w / 1300, h / 740);
+    s.style.transform = 'translate(-50%,-50%) scale(' + k + ')';
+  }
+  function show(i) { cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, j) { s.classList.toggle('active', j === cur); });
+    document.getElementById('ind').textContent = (cur + 1) + ' / ' + slides.length; fit(); }
+  document.getElementById('prev').onclick = function () { show(cur - 1); };
+  document.getElementById('next').onclick = function () { show(cur + 1); };
+  document.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') show(cur + 1); if (e.key === 'ArrowLeft') show(cur - 1); });
+  window.addEventListener('resize', fit);
+  document.getElementById('theme-btn').onclick = function () {
+    var b = document.body.classList.toggle('theme-b'); this.textContent = b ? '切換：A 活潑風' : '切換：B 學術風'; };
+  if (location.hash === '#b') document.getElementById('theme-btn').click();
+  show(0);
+</script>
+</body>
+</html>

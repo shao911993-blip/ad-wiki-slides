@@ -1,0 +1,649 @@
+/* ==========================================================================
+   視覺異常檢測論文筆記站 — 全站共用樣式表 (assets/style.css)
+   風格定案：B3 暖米灰背景 + 白色卡片雙底色 / B1 純黑白灰文字 / 連結保留底線 /
+            Metadata 與標籤透明底細框 / Booktabs 學術三線表
+   ========================================================================== */
+
+:root {
+  /* 雙底色：頁面背景（B3 暖灰）與卡片／主內容表面（純白） */
+  --bg-page: #F7F6F2;
+  --bg-surface: #FFFFFF;
+
+  /* 邊框與分隔線 */
+  --border: #E4E4E7;
+  --border-strong: #A1A1AA;
+
+  /* B1 純黑白灰文字、連結與表格線（無彩色色調） */
+  --text-main: #18181B;
+  --text-muted: #52525B;
+  --text-faint: #71717A;
+  --accent: #18181B;
+  --table-rule: #18181B;
+
+  --radius: 6px;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 深色模式雙底色：B3 深色底 + 深灰卡片表面 */
+    --bg-page: #151514;
+    --bg-surface: #1D1D1B;
+
+    --border: #323230;
+    --border-strong: #525252;
+
+    /* B1 深色模式淺灰／白文字與連結 */
+    --text-main: #E5E5E5;
+    --text-muted: #A3A3A3;
+    --text-faint: #737373;
+    --accent: #FFFFFF;
+    --table-rule: #D4D4D4;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  font-size: 15.5px;
+}
+
+/* 連結：純黑（深色為純白）+ 固定保留底線，與內文清楚區分 */
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+}
+
+a:hover {
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1.5px;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 12px 16px;
+  overflow-x: auto;
+}
+
+pre code {
+  border: none;
+  padding: 0;
+}
+
+ul, ol {
+  padding-left: 22px;
+  margin: 10px 0 16px;
+  max-width: 100%;
+}
+
+li {
+  margin-bottom: 6px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+p {
+  margin: 10px 0 14px;
+  overflow-wrap: break-word;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 32px 24px 72px;
+}
+
+/* ==========================================================================
+   首頁 (index.html) 元件
+   ========================================================================== */
+
+.site-header {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.site-subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.stat-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stat-pill {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.stat-pill strong {
+  color: var(--text-main);
+}
+
+/* 搜尋與標籤篩選列 */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 28px;
+  background: var(--bg-surface);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.search-input {
+  flex: 1;
+  min-width: 240px;
+  padding: 7px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-main);
+  font-size: 14px;
+  font-family: var(--font-sans);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--border-strong);
+}
+
+.filter-btn {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-strong);
+}
+
+.filter-btn.active {
+  background: var(--text-main);
+  color: var(--bg-surface);
+  border-color: var(--text-main);
+  font-weight: 600;
+}
+
+/* 三大分類區塊與論文卡片 */
+.category-section {
+  margin-bottom: 36px;
+}
+
+.category-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 32px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.category-header h2 {
+  font-size: 17.5px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.category-sort-note {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.empty-category-note {
+  font-size: 13.5px;
+  color: var(--text-faint);
+  font-style: italic;
+  padding: 12px 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.paper-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.15s;
+}
+
+.paper-card:hover {
+  border-color: var(--border-strong);
+}
+
+.paper-card[hidden] {
+  display: none !important;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.card-tldr {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+
+/* 標籤與分類徽章：透明底 + 1px 淡灰細框 + 深灰字 */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.tag,
+.badge {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.card-footer {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+/* ==========================================================================
+   論文筆記內頁 (papers/<檔名>.html) 元件
+   ========================================================================== */
+
+.paper-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* 側邊固定導覽目錄 (Sticky TOC) */
+.toc-sidebar {
+  position: sticky;
+  top: 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.toc-heading {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.toc-toggle-btn {
+  display: none;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13.5px;
+  border-left: 1px solid var(--border);
+}
+
+.toc-list li {
+  margin-bottom: 2px;
+}
+
+.toc-list li a {
+  display: block;
+  padding: 5px 0 5px 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.toc-list li a:hover {
+  color: var(--text-main);
+}
+
+/* 目前的目錄項目：B1 純黑白灰強調 + 左側實線 */
+.toc-list li a.active {
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  margin-left: -1px;
+  font-weight: 600;
+}
+
+.toc-back {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+}
+
+/* 主內容卡片 */
+.paper-main {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  min-width: 0;
+}
+
+.paper-title {
+  font-size: 23px;
+  font-weight: 700;
+  margin: 10px 0 16px;
+  line-height: 1.35;
+}
+
+/* Metadata 資訊網格：透明底 + 1px 淡灰細框 */
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  border-radius: 4px;
+  margin-top: 12px;
+  font-size: 13.5px;
+}
+
+.meta-item strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+/* 各大固定欄位標題 */
+.sec-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 36px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sec-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.sub-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 22px 0 8px;
+}
+
+/* TL;DR 區塊：透明底 + 左側一條細灰線 */
+.tldr-callout {
+  border-left: 3px solid var(--border-strong);
+  padding: 6px 0 6px 16px;
+  margin: 14px 0 18px;
+  color: var(--text-main);
+}
+
+/* 架構示意圖容器：透明底 + 1px 淡灰細框 */
+.diagram-card {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  margin: 18px 0;
+  overflow-x: auto;
+}
+
+.diagram-caption {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+/* Booktabs 學術三線表（純黑白素色） */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0 6px;
+}
+
+.booktabs {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.booktabs thead tr {
+  border-top: 2px solid var(--table-rule);
+  border-bottom: 1px solid var(--table-rule);
+}
+
+.booktabs tbody tr:last-child {
+  border-bottom: 2px solid var(--table-rule);
+}
+
+.booktabs tbody tr.midrule {
+  border-bottom: 1px solid var(--border);
+}
+
+.booktabs th,
+.booktabs td {
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.booktabs th {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.booktabs td.num,
+.booktabs th.num {
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.table-caption {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+/* KaTeX 獨立區塊公式：不拆行、不左右捲動，交由 assets/math-fit.js 自動縮字級 */
+.katex-display {
+  max-width: 100%;
+  overflow: hidden;
+  padding: 2px 0;
+}
+
+.katex-display > .katex {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* 響應式：手機版窄螢幕收合側邊目錄為頂部選單 */
+@media (max-width: 820px) {
+  .container {
+    padding: 20px 16px 56px;
+  }
+  .paper-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .toc-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 10px 14px;
+  }
+  .toc-heading {
+    display: none;
+  }
+  .toc-toggle-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toc-sidebar:not(.open) .toc-list,
+  .toc-sidebar:not(.open) .toc-back {
+    display: none;
+  }
+  .toc-sidebar.open .toc-list {
+    margin-top: 10px;
+  }
+  .paper-main {
+    padding: 22px 18px;
+    overflow-x: hidden;
+  }
+  ul, ol {
+    padding-left: 18px;
+  }
+  .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .booktabs {
+    width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    font-size: 12px;
+  }
+  .booktabs th,
+  .booktabs td {
+    padding: 6px 6px;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    vertical-align: top;
+  }
+  .booktabs ol,
+  .booktabs ul {
+    padding-left: 14px !important;
+    margin: 0;
+  }
+  .booktabs .katex {
+    font-size: 0.92em;
+  }
+  .katex-display > .katex {
+    font-size: 0.92em;
+  }
+}
+
+@media (max-width: 600px) {
+  .booktabs {
+    font-size: 11.5px;
+  }
+  .booktabs th,
+  .booktabs td {
+    padding: 5px 4px;
+  }
+  .katex-display > .katex {
+    font-size: 0.72em;
+  }
+}

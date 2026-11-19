@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 350" width="100%" height="auto" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#18181B"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#52525B"/>
+    </marker>
+  </defs>
+
+  <!-- Outer Card Background -->
+  <rect x="2" y="2" width="876" height="346" rx="6" fill="#FFFFFF" stroke="#E4E4E7" stroke-width="1"/>
+
+  <!-- Left Input Column: Input Image x0 & Synthetic Mask M -->
+  <rect x="16" y="34" width="106" height="82" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+  <text x="69" y="57" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">輸入影像 x<tspan baseline-shift="sub" font-size="72%">0</tspan></text>
+  <text x="69" y="75" text-anchor="middle" font-size="10.5" fill="#52525B">訓練：正常 (y=0)</text>
+  <text x="69" y="91" text-anchor="middle" font-size="10.5" fill="#52525B">或合成異常 (y=1)</text>
+  <text x="69" y="106" text-anchor="middle" font-size="10" fill="#52525B">測試：待測影像</text>
+
+  <rect x="16" y="242" width="106" height="68" rx="4" fill="#F7F6F2" stroke="#52525B" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="69" y="266" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">合成異常遮罩 M</text>
+  <text x="69" y="284" text-anchor="middle" font-size="10" fill="#52525B">Synthetic Mask</text>
+  <text x="69" y="299" text-anchor="middle" font-size="10" fill="#52525B">(僅訓練階段監督)</text>
+
+  <!-- Middle Panel: Reconstruction Sub-network -->
+  <rect x="142" y="16" width="466" height="318" rx="6" fill="#F7F6F2" stroke="#A1A1AA" stroke-width="1.2"/>
+  <text x="375" y="36" text-anchor="middle" font-size="13.5" font-weight="700" fill="#18181B">Reconstruction Sub-network（雙尺度規範引導一步擴散重建子網路）</text>
+
+  <!-- Two-scale Diffusion Forward Process -->
+  <rect x="156" y="52" width="136" height="196" rx="5" fill="#FFFFFF" stroke="#18181B" stroke-width="1.3"/>
+  <text x="224" y="72" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">雙尺度前向加噪</text>
+  <text x="224" y="87" text-anchor="middle" font-size="10" fill="#52525B">Two-scale Forward (Eq. 1)</text>
+
+  <!-- Small noise scale x_ts -->
+  <rect x="168" y="98" width="112" height="58" rx="4" fill="#F7F6F2" stroke="#18181B" stroke-width="1.1"/>
+  <text x="224" y="117" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">小尺度加噪 x<tspan baseline-shift="sub" font-size="72%">t_s</tspan></text>
+  <text x="224" y="133" text-anchor="middle" font-size="10" fill="#52525B">t<tspan baseline-shift="sub" font-size="72%">s</tspan> ∈ S = {0,…,τ}</text>
+  <text x="224" y="148" text-anchor="middle" font-size="10" fill="#18181B">(推論固定 t<tspan baseline-shift="sub" font-size="72%">s</tspan> = 200)</text>
+
+  <!-- Large noise scale x_tb -->
+  <rect x="168" y="172" width="112" height="62" rx="4" fill="#F7F6F2" stroke="#18181B" stroke-width="1.1"/>
+  <text x="224" y="191" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">大尺度加噪 x<tspan baseline-shift="sub" font-size="72%">t_b</tspan></text>
+  <text x="224" y="207" text-anchor="middle" font-size="10" fill="#52525B">t<tspan baseline-shift="sub" font-size="72%">b</tspan> ∈ B = {τ+1,…,T}</text>
+  <text x="224" y="222" text-anchor="middle" font-size="10" fill="#18181B">(推論固定 t<tspan baseline-shift="sub" font-size="72%">b</tspan> = 400)</text>
+
+  <!-- Arrow from Input x0 to Forward Process -->
+  <line x1="122" y1="84" x2="152" y2="84" stroke="#18181B" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Diffusion Model epsilon_theta -->
+  <rect x="312" y="92" width="98" height="156" rx="5" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+  <text x="361" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">擴散模型</text>
+  <text x="361" y="156" text-anchor="middle" font-size="11" fill="#18181B">Diffusion U-Net</text>
+  <text x="361" y="178" text-anchor="middle" font-size="13" font-weight="700" fill="#18181B">ε<tspan baseline-shift="sub" font-size="72%">θ</tspan>(x<tspan baseline-shift="sub" font-size="72%">t</tspan>, t)</text>
+  <text x="361" y="200" text-anchor="middle" font-size="10" fill="#52525B">共享權重預測</text>
+  <text x="361" y="215" text-anchor="middle" font-size="10" fill="#52525B">雙尺度雜訊</text>
+
+  <!-- Arrows from Forward Process to Diffusion Model -->
+  <line x1="280" y1="127" x2="308" y2="127" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="280" y1="203" x2="308" y2="203" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- L_noise Training Loss Box -->
+  <rect x="278" y="268" width="166" height="52" rx="4" fill="#FFFFFF" stroke="#52525B" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="361" y="288" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">去噪損失 L<tspan baseline-shift="sub" font-size="72%">noise</tspan> (Eq. 9)</text>
+  <text x="361" y="306" text-anchor="middle" font-size="10" fill="#52525B">乘 (1−y)：只用正常樣本（y=0）計算</text>
+  <line x1="361" y1="248" x2="361" y2="264" stroke="#52525B" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#arrow-muted)"/>
+
+  <!-- Norm-guided One-step Denoising (NOD) Box -->
+  <rect x="430" y="52" width="164" height="206" rx="5" fill="#FFFFFF" stroke="#18181B" stroke-width="1.5"/>
+  <text x="512" y="72" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">規範引導一步去噪</text>
+  <text x="512" y="87" text-anchor="middle" font-size="10.5" font-weight="700" fill="#52525B">NOD Paradigm (Eq. 6–8)</text>
+
+  <!-- Step A: Small scale prediction -->
+  <rect x="442" y="96" width="140" height="40" rx="3" fill="#F7F6F2" stroke="#18181B" stroke-width="1"/>
+  <text x="512" y="113" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">小尺度預測 ε<tspan baseline-shift="sub" font-size="72%">θ</tspan>(x<tspan baseline-shift="sub" font-size="72%">t_s</tspan>)</text>
+  <text x="512" y="128" text-anchor="middle" font-size="9.5" fill="#52525B">保留正常區域細膩邊緣細節</text>
+
+  <!-- Step B: Large scale prediction -> Norm n = x^hat_0b -->
+  <rect x="442" y="146" width="140" height="46" rx="3" fill="#F7F6F2" stroke="#18181B" stroke-width="1"/>
+  <text x="512" y="163" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">大尺度規範 n = x̂<tspan baseline-shift="sub" font-size="72%">0_b</tspan></text>
+  <text x="512" y="179" text-anchor="middle" font-size="9.5" fill="#52525B">由 ε<tspan baseline-shift="sub" font-size="72%">θ</tspan>(x<tspan baseline-shift="sub" font-size="72%">t_b</tspan>) 一步去噪清除大異常</text>
+
+  <!-- Step C: Norm-guided combination -->
+  <rect x="442" y="202" width="140" height="46" rx="3" fill="#E4E4E7" stroke="#18181B" stroke-width="1.2"/>
+  <text x="512" y="220" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">引導修正 ε<tspan baseline-shift="sub" font-size="72%">θ</tspan>(x<tspan baseline-shift="sub" font-size="72%">t_s</tspan>, n<tspan baseline-shift="sub" font-size="72%">t_s</tspan>)</text>
+  <text x="512" y="238" text-anchor="middle" font-size="10.5" font-weight="700" fill="#18181B">→ 一步重建 x̂<tspan baseline-shift="sub" font-size="72%">0_g</tspan></text>
+
+  <!-- Arrows inside/to NOD -->
+  <line x1="410" y1="120" x2="438" y2="120" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="410" y1="170" x2="438" y2="170" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="512" y1="192" x2="512" y2="200" stroke="#18181B" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- Right Panel: Segmentation Sub-network -->
+  <rect x="626" y="16" width="238" height="318" rx="6" fill="#F7F6F2" stroke="#A1A1AA" stroke-width="1.2"/>
+  <text x="745" y="36" text-anchor="middle" font-size="13.5" font-weight="700" fill="#18181B">Segmentation Sub-network</text>
+  <text x="745" y="52" text-anchor="middle" font-size="11" fill="#52525B">（像素級異常分割子網路）</text>
+
+  <!-- Channel-wise Concatenation -->
+  <rect x="644" y="68" width="202" height="58" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.3"/>
+  <text x="745" y="90" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">通道拼接 Concat(x<tspan baseline-shift="sub" font-size="72%">0</tspan>, x̂<tspan baseline-shift="sub" font-size="72%">0_g</tspan>)</text>
+  <text x="745" y="110" text-anchor="middle" font-size="10.5" fill="#52525B">輸入原圖 x<tspan baseline-shift="sub" font-size="72%">0</tspan> 與無異常重建圖 x̂<tspan baseline-shift="sub" font-size="72%">0_g</tspan></text>
+
+  <!-- Bypass Arrow from Input x0 to Concat -->
+  <path d="M 69 34 L 69 10 L 745 10 L 745 64" fill="none" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- Arrow from NOD x^hat_0g to Concat -->
+  <path d="M 582 225 L 614 225 L 614 97 L 640 97" fill="none" stroke="#18181B" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <line x1="745" y1="126" x2="745" y2="146" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- Segmentation U-Net -->
+  <rect x="644" y="150" width="202" height="52" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+  <text x="745" y="172" text-anchor="middle" font-size="12" font-weight="700" fill="#18181B">Segmentation U-Net</text>
+  <text x="745" y="190" text-anchor="middle" font-size="10.5" fill="#52525B">含 Skip Connections 編解碼器</text>
+
+  <line x1="745" y1="202" x2="745" y2="220" stroke="#18181B" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- Predicted Anomaly Map M^hat -->
+  <rect x="644" y="224" width="202" height="44" rx="4" fill="#FFFFFF" stroke="#18181B" stroke-width="1.5"/>
+  <text x="745" y="243" text-anchor="middle" font-size="11.5" font-weight="700" fill="#18181B">預測異常分數圖 M̂</text>
+  <text x="745" y="259" text-anchor="middle" font-size="10" fill="#52525B">影像級分數：Top K=50 像素平均</text>
+
+  <!-- L_mask Training Loss Box -->
+  <rect x="644" y="280" width="202" height="44" rx="4" fill="#FFFFFF" stroke="#52525B" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="745" y="299" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B">分割損失 L<tspan baseline-shift="sub" font-size="72%">mask</tspan> (Eq. 10)</text>
+  <text x="745" y="315" text-anchor="middle" font-size="10" fill="#52525B">Smooth L₁(M, M̂) + γ L<tspan baseline-shift="sub" font-size="72%">focal</tspan>(M, M̂)</text>
+
+  <line x1="745" y1="268" x2="745" y2="278" stroke="#52525B" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#arrow-muted)"/>
+  <!-- Arrow from Synthetic Mask M to L_mask -->
+  <path d="M 69 310 L 69 338 L 745 338 L 745 326" fill="none" stroke="#52525B" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow-muted)"/>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTphZjA1NjI4My1iNTgzLTRiMDktYTE3ZC04OWM2NTBmODBlNjIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaJGBPNmsWJHEkEnxQlEc7gAAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDowNjI2YTZkYi02YTc2LTQ2NWYtYjE4Yi1jZTg5MTZkN2ZlNzNscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoT5MukCa9D4MUFeF+u4coRwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggN6Wv0AeEMIqoJNGhTjVtQc79KAhcvkVqxYS9SFmZmcKkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJhiwokwXWeohz+yzlh1A1EAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIEMd2qAeC79sf3jHduCJYxmA4vciqKKVryYU/4dY0hNuZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSx5Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmFmMDU2MjgzLWI1ODMtNGIwOS1hMTdkLTg5YzY1MGY4MGU2Mi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmM2MzVhNzdhLWFmZDMtNGRjNi05MmU4LWVmMjk3MTExNzIyZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCA3pa/QB4Qwiqgk0aFONW1Bzv0oCFy+RWrFhL1IWZmZwqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggec9kYwooqCraTZpwwZiWzjF5hK479hQqkzr6r9ME+YWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggua8BBVnG2PDmc7jpsduJe9arHnuIgVMa4mc8LkuCbhd0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQJGaDGKlc2sF1e2X2YDvBz99v50u962+dzgYfunG2ov5MW796mJygJ9uchYKL0RC/ypAt+fvceoWPmkDja+8QzU=</c2pa:manifest></metadata></svg>
